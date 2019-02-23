@@ -1,0 +1,29 @@
+{
+  "name": "bjk",
+  "version": "0.1.0",
+  "description": "a personal playground",
+  "author": "Bryan Kegley <hi@bryankegley.me>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "lerna run test",
+    "test:coverage": "CODE_COV=true lerna run test",
+    "lint": "lerna run lint",
+    "prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|md|mdx|graphql)\"",
+    "format": "yarn prettier -- --write",
+    "validate": "yarn lint && yarn prettier -- --list-different && yarn test"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "babel-jest": "^24.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-jest": "^22.3.0",
+    "jest": "^24.1.0",
+    "lerna": "^3.13.0",
+    "prettier": "^1.16.4"
+  }
+}
