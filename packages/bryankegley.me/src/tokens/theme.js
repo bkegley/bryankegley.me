@@ -5,13 +5,13 @@ import fonts from './fonts'
 import fontSizes from './fontSizes'
 import space from './space'
 
-const theme = {
+const theme = darkMode => ({
   breakpoints,
   cards,
-  colors,
+  colors: colors(darkMode),
   fonts,
   fontSizes,
   space,
-}
+})
 
 export default theme

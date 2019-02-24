@@ -17,5 +17,11 @@ export default createGlobalStyle`
         height: 100%;
         margin: 0px;
         padding: 0px;
+        color: ${props => props.theme.colors.black}
+    }
+
+    p {
+        line-height: 1.65rem;
+        margin-bottom: 2rem;
     }
 `

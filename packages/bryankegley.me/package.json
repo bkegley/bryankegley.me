@@ -13,8 +13,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@mdx-js/mdx": "^0.17.5",
+    "@mdx-js/tag": "^0.17.5",
+    "date-fns": "^1.30.1",
     "gatsby": "^2.1.17",
     "gatsby-image": "^2.0.29",
+    "gatsby-mdx": "^0.4.0",
     "gatsby-plugin-manifest": "^2.0.19",
     "gatsby-plugin-offline": "^2.0.24",
     "gatsby-plugin-react-helmet": "^3.0.6",
@@ -24,6 +28,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "react-feather": "^1.1.6",
     "react-helmet": "^5.2.0",
     "rebass": "^3.0.1",
     "styled-components": "^4.1.3",
