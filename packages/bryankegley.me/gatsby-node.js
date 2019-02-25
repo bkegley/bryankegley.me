@@ -41,7 +41,7 @@ exports.createPages = async ({graphql, actions}) => {
   result.data.allMdx.edges.forEach(({node}) => {
     createPage({
       path: node.fields.slug,
-      component: path.resolve(`src/templates/Post/index.js`),
+      component: path.resolve(`src/templates/Post.js`),
       context: {
         id: node.id,
         imagePath: node.frontmatter.imagePath,
@@ -56,7 +56,7 @@ exports.createPages = async ({graphql, actions}) => {
   Array.from(Array(numberOfPostListPages)).forEach((item, index) => {
     createPage({
       path: index > 0 ? `/posts/${index + 1}` : `/posts`,
-      component: path.resolve(`src/templates/ListPosts.js`),
+      component: path.resolve(`src/templates/PostListPage.js`),
       context: {
         skip: index * postListPageLength,
         limit: postListPageLength,

@@ -4,8 +4,8 @@ import Img from 'gatsby-image'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import {Flex, Box, Heading, Text} from 'rebass'
 import styled from 'styled-components'
-import Layout from '../../components/Layout'
-import SEO from '../../components/SEO'
+import Layout from '../components/Layout'
+import SEO from '../components/SEO'
 import PostMeta from './PostMeta'
 
 const TitleContainer = styled(Flex)`
