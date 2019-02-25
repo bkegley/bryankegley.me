@@ -20,10 +20,10 @@ const About = () => {
       <SEO title="About" />
       <Box mb={[4, 4, 5, 5]}>
         <Heading as="h1" fontSize={7} mb={3}>
-          about
+          about,
         </Heading>
         <Text ml={3} color="grays.700">
-          narcissism reigns
+          'cuz narcissism reigns
         </Text>
       </Box>
       <Flex flexDirection="column" mb={5}>

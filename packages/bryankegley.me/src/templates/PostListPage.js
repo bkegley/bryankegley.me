@@ -22,7 +22,7 @@ const Posts = ({data, pageContext}) => {
       <SEO title="Posts" />
       <Box mb={[4, 4, 5, 5]}>
         <Heading as="h1" fontSize={7} mb={3}>
-          posts
+          posts,
         </Heading>
         <Text ml={3} color="grays.700">
           read 'em and weep...

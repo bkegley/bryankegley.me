@@ -13,10 +13,10 @@ const IndexPage = props => {
       <SEO title="Home" keywords={[`blog`, `technology`, `react`, `javascript`]} />
       <Box mb={[4, 4, 5, 5]}>
         <Heading as="h1" fontSize={7} mb={3}>
-          hi
+          hi,
         </Heading>
         <Text ml={3} color="grays.700">
-          hola, hallo
+          and a hearty handshake
         </Text>
       </Box>
       {data.allMdx && (
