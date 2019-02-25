@@ -1,26 +1,30 @@
 import React from 'react'
 import {Link, graphql} from 'gatsby'
-import {Flex, Box, Heading} from 'rebass'
+import {Flex, Box, Heading, Text} from 'rebass'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import PostSnippet from '../components/PostSnippet'
+import PostList from '../components/PostList'
 
 const IndexPage = props => {
   const {data} = props
   return (
     <Layout pathName={props['*']}>
       <SEO title="Home" keywords={[`blog`, `technology`, `react`, `javascript`]} />
+      <Box mb={[4, 4, 5, 5]}>
+        <Heading as="h1" fontSize={7} mb={3}>
+          hi
+        </Heading>
+        <Text ml={3} color="grays.700">
+          hola, hallo
+        </Text>
+      </Box>
       {data.allMdx && (
         <Flex flexDirection="column">
           <Heading fontSize={4}>Recent Posts</Heading>
-          {data.allMdx.edges.map(({node}) => (
-            <Box my={3}>
-              <PostSnippet post={node} />
-            </Box>
-          ))}
+          <PostList postEdges={data.allMdx.edges} />
         </Flex>
       )}
-      <Link to="/page-2/">Go to page 2</Link>
     </Layout>
   )
 }
