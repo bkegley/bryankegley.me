@@ -24,7 +24,7 @@ const SideColumnWrapper = styled(Box)`
 
 const PostTemplate = props => {
   const {
-    data: {mdx: post, headerImage},
+    data: {mdx: post},
   } = props
   const {series, title, subtitle, imageDescription} = post.frontmatter
   return (
@@ -49,14 +49,6 @@ const PostTemplate = props => {
             {subtitle}
           </PostSubtitle>
         </Flex>
-        {headerImage && (
-          <Box flex={1} order={[1, 1, 2, 2]} width="100%">
-            <Img fluid={headerImage.childImageSharp.fluid} alt={headerImage.name} />
-            <Text fontSize={1} color="grays.700" mt={2}>
-              {imageDescription}
-            </Text>
-          </Box>
-        )}
       </TitleContainer>
       <Flex flexDirection="row" justifyContent="flex-start">
         <SideColumnWrapper mr={5}>
@@ -72,7 +64,7 @@ const PostTemplate = props => {
 }
 
 export const query = graphql`
-  query PostQuery($id: String, $imagePath: String) {
+  query PostQuery($id: String) {
     mdx(id: {eq: $id}) {
       id
       timeToRead
@@ -83,18 +75,9 @@ export const query = graphql`
         excerpt
         date
         tags
-        imageDescription
       }
       code {
         body
-      }
-    }
-    headerImage: file(relativePath: {eq: $imagePath}) {
-      name
-      childImageSharp {
-        fluid(maxWidth: 960) {
-          ...GatsbyImageSharpFluid
-        }
       }
     }
   }

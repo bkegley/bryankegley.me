@@ -26,9 +26,6 @@ exports.createPages = async ({graphql, actions}) => {
         edges {
           node {
             id
-            frontmatter {
-              imagePath
-            }
             fields {
               slug
             }
@@ -44,7 +41,6 @@ exports.createPages = async ({graphql, actions}) => {
       component: path.resolve(`src/templates/Post.js`),
       context: {
         id: node.id,
-        imagePath: node.frontmatter.imagePath,
       },
     })
   })
