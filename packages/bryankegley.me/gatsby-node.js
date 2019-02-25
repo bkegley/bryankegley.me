@@ -22,6 +22,7 @@ exports.createPages = async ({graphql, actions}) => {
   const result = await graphql(`
     {
       allMdx {
+        totalCount
         edges {
           node {
             id
@@ -44,6 +45,22 @@ exports.createPages = async ({graphql, actions}) => {
       context: {
         id: node.id,
         imagePath: node.frontmatter.imagePath,
+      },
+    })
+  })
+
+  const postListPageLength = 5
+
+  const numberOfPostListPages = Math.ceil(result.data.allMdx.totalCount / postListPageLength)
+
+  Array.from(Array(numberOfPostListPages)).forEach((item, index) => {
+    createPage({
+      path: index > 0 ? `/posts/${index + 1}` : `/posts`,
+      component: path.resolve(`src/templates/ListPosts.js`),
+      context: {
+        skip: index * postListPageLength,
+        limit: postListPageLength,
+        currentPage: index + 1,
       },
     })
   })
