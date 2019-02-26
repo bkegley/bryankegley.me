@@ -26,6 +26,10 @@ exports.createPages = async ({graphql, actions}) => {
         edges {
           node {
             id
+            frontmatter {
+              tags
+              series
+            }
             fields {
               slug
             }
@@ -35,6 +39,7 @@ exports.createPages = async ({graphql, actions}) => {
     }
   `)
 
+  // Create Post pages
   result.data.allMdx.edges.forEach(({node}) => {
     createPage({
       path: node.fields.slug,
@@ -49,6 +54,7 @@ exports.createPages = async ({graphql, actions}) => {
 
   const numberOfPostListPages = Math.ceil(result.data.allMdx.totalCount / postListPageLength)
 
+  // Create PostList pages
   Array.from(Array(numberOfPostListPages)).forEach((item, index) => {
     createPage({
       path: index > 0 ? `/posts/${index + 1}` : `/posts`,
@@ -57,6 +63,22 @@ exports.createPages = async ({graphql, actions}) => {
         skip: index * postListPageLength,
         limit: postListPageLength,
         currentPage: index + 1,
+      },
+    })
+  })
+
+  // Create TagList pages
+  const tags = result.data.allMdx.edges.reduce((tagArray, {node}) => {
+    const newTags = node.frontmatter.tags.filter(tag => tagArray.indexOf(tag) === -1)
+    return tagArray.concat(newTags)
+  }, [])
+
+  tags.forEach(tag => {
+    createPage({
+      path: `/posts/tags/${tag}`,
+      component: path.resolve(`src/templates/Tag.js`),
+      context: {
+        tag: [tag],
       },
     })
   })
