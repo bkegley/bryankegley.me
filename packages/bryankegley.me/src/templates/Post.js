@@ -26,9 +26,9 @@ const PostTemplate = props => {
   const {
     data: {mdx: post},
   } = props
-  const {series, title, subtitle, imageDescription} = post.frontmatter
+  const {series, title, subtitle, tags} = post.frontmatter
   return (
-    <Layout pathName={props['*']}>
+    <Layout>
       <SEO title={title} />
       <TitleContainer
         flexDirection={['column', 'column', 'row', 'row']}
