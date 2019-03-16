@@ -1,12 +1,20 @@
 import React from 'react'
-import {graphql} from 'gatsby'
-import Img from 'gatsby-image'
+import {graphql, Link} from 'gatsby'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import {Flex, Box, Heading, Text} from 'rebass'
 import styled from 'styled-components'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import PostMeta from './PostMeta'
+import format from 'date-fns/format'
+
+const Badge = styled(Text)`
+  border-radius: 0.3rem;
+`
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`
 
 const TitleContainer = styled(Flex)`
   border-bottom: 1px solid ${props => props.theme.colors.grays[300]};
@@ -17,10 +25,6 @@ const PostSeries = styled(Text)`
 `
 
 const PostSubtitle = styled(Text)``
-
-const SideColumnWrapper = styled(Box)`
-  min-width: 140px;
-`
 
 const PostTemplate = props => {
   const {
@@ -40,24 +44,34 @@ const PostTemplate = props => {
       >
         <Flex flexDirection="column" flex={1} order={[2, 2, 1, 1]}>
           <PostSeries fontSize={2} color="primary">
-            [{series}]
+            {series ? `[${series}]` : null}
           </PostSeries>
-          <Heading as="h1" fontSize={6}>
+          <Heading as="h1" fontSize={6} color="primary">
             {title}
           </Heading>
+          <Flex color="grays.700" mb={3} fontSize={1}>
+            <Text mr={2}>{format(post.frontmatter.date, 'MMM D, YYYY')}</Text>
+            <Text mr={2}>•</Text>
+            <Text>{post.timeToRead} minute read</Text>
+          </Flex>
           <PostSubtitle ml={3} color="grays.700">
             {subtitle}
           </PostSubtitle>
         </Flex>
       </TitleContainer>
-      <Flex flexDirection="row" justifyContent="flex-start">
-        <SideColumnWrapper mr={5}>
-          <PostMeta post={post} />
-        </SideColumnWrapper>
-        <Box>
-          <MDXRenderer>{post.code.body}</MDXRenderer>
-        </Box>
-        <SideColumnWrapper />
+      <Box>
+        <MDXRenderer>{post.code.body}</MDXRenderer>
+      </Box>
+      <Flex>
+        {post.frontmatter.tags.map(tag => {
+          return (
+            <StyledLink to={`/posts/tags/${tag}`}>
+              <Badge bg="grays.900" px={2} py={1} color="grays.300" mx={2} fontSize={1}>
+                {tag}
+              </Badge>
+            </StyledLink>
+          )
+        })}
       </Flex>
     </Layout>
   )
