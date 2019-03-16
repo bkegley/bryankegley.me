@@ -22,7 +22,7 @@ const SiteWrapper = styled(Box)`
 
 const LayoutWrapper = styled(Flex)`
   margin: auto;
-  width: 60rem;
+  width: 50rem;
   max-width: 90%;
 `
 
