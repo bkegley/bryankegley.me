@@ -17,7 +17,6 @@ const StyledLink = styled(Link)`
 `
 
 const RelatedPosts = ({post}) => {
-  console.log({post})
   return (
     <Flex flexDirection="column" alignItems="center" justifyContent="flex-end" width="100%">
       <MetaContainer flexDirection="column" my={3} alignItems="flex-end" width="100%" pb={3}>

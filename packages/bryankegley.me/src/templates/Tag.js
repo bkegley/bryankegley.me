@@ -6,7 +6,6 @@ import SEO from '../components/SEO'
 import PostList from '../components/PostList'
 
 const TagTemplate = ({data, pageContext}) => {
-  console.log({data})
   return (
     <Layout>
       <SEO title="Posts" />
