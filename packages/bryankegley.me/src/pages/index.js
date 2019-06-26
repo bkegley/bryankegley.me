@@ -1,9 +1,8 @@
 import React from 'react'
-import {Link, graphql} from 'gatsby'
+import {graphql} from 'gatsby'
 import {Flex, Box, Heading, Text} from 'rebass'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import PostSnippet from '../components/PostSnippet'
 import PostList from '../components/PostList'
 
 const IndexPage = props => {
@@ -38,7 +37,6 @@ export const query = graphql`
           timeToRead
           frontmatter {
             title
-            series
             excerpt
             date
           }

@@ -34,7 +34,6 @@ export const query = graphql`
           frontmatter {
             title
             subtitle
-            series
             excerpt
             date
             tags

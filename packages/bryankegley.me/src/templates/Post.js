@@ -30,7 +30,7 @@ const PostTemplate = props => {
   const {
     data: {mdx: post},
   } = props
-  const {series, title, subtitle, tags} = post.frontmatter
+  const {series, title, subtitle} = post.frontmatter
   return (
     <Layout>
       <SEO title={title} />
@@ -85,7 +85,6 @@ export const query = graphql`
       frontmatter {
         title
         subtitle
-        series
         excerpt
         date
         tags

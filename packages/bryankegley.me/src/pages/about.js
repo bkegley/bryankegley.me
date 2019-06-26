@@ -25,6 +25,12 @@ const About = () => {
         <Text ml={3} color="grays.700">
           'cuz narcissism reigns
         </Text>
+        <Box mt={5}>
+          <Text my={3}>What's a blog anyway? Let's anagram this:</Text>
+          <Text my={3}>B - blog, it's a blog after</Text>
+          <Text my={3}>L - log, what's a blog but a [b]log?</Text>
+          <Text my={3}>O - OG, 'cuz blogs certainly are the Original Gangster</Text>
+        </Box>
       </Box>
       <Flex flexDirection="column" mb={5}>
         {result.site.siteMetadata.author}

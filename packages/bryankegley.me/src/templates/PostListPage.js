@@ -50,7 +50,6 @@ export const query = graphql`
           timeToRead
           frontmatter {
             title
-            series
             excerpt
             date
           }

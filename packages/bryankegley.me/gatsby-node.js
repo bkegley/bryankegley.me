@@ -28,7 +28,6 @@ exports.createPages = async ({graphql, actions}) => {
             id
             frontmatter {
               tags
-              series
             }
             fields {
               slug
