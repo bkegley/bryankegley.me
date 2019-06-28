@@ -1,47 +1,64 @@
 /** @jsx jsx */
-import React from 'react'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import {jsx, Flex, Box} from 'theme-ui'
 import Button from '../components/Button'
 
+const inputStyles = {
+  px: 3,
+  py: 2,
+  fontSize: 2,
+  boxShadow: 'none',
+  width: '100%',
+  outline: '0px',
+  resize: 'none',
+  border: '1px solid lightgrey',
+  ':focus': {
+    borderColor: 'primary',
+  },
+}
+
 const ContactPage = () => {
-  const [state, setState] = React.useState({})
-  const handleChange = e => {
-    setState({...state, [e.target.name]: e.target.value})
-  }
   return (
     <Layout>
       <SEO title="Contact" />
-      <div sx={{mb: [4, 4, 5, 5]}}>
+      <div sx={{width: '100%', mb: [4, 4, 5, 5]}}>
         <h1 sx={{fontSize: 7, mb: 3}}>contact</h1>
-        <Flex sx={{flexDirection: 'row', mt: 5, flexWrap: 'wrap'}}>
-          <Box>
+        <Flex sx={{flexDirection: 'column', alignItems: 'center', mt: 5, flexWrap: 'wrap'}}>
+          <Box sx={{flex: 1, mb: 3}}>
+            <p>I'd love to chat. Drop your info here and I'll be in touch shortly.</p>
+          </Box>
+          <Box sx={{flex: 1}}>
             <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" action="/success">
               <input type="hidden" name="form-name" value="contact" />
               <p hidden>
                 <label>
                   Don't fill this out
-                  <input type="hidden" name="bot-field" onChange={handleChange} />
+                  <input type="hidden" name="bot-field" />
                 </label>
               </p>
-              <Box>
-                <label>
-                  Name
-                  <input type="text" name="name" onChange={handleChange} />
-                </label>
+              <Flex sx={{flexDirection: ['column', 'column', 'row', 'row'], width: '100%'}}>
+                <Box sx={{mr: [0, 0, 4, 4], flex: 1}}>
+                  <label htmlFor="firstName" />
+                  <input sx={inputStyles} type="text" name="firstName" placeholder="First Name" />
+                </Box>
+                <Box sx={{flex: 1, mt: [3, 3, 0, 0], ml: [0, 0, 4, 4]}}>
+                  <label htmlFor="lastName">
+                    <input sx={inputStyles} type="text" name="lastName" placeholder="Last Name" />
+                  </label>
+                </Box>
+              </Flex>
+              <Box sx={{width: '100%', my: 3}}>
+                <label htmlFor="email" />
+                <input sx={inputStyles} type="email" name="email" placeholder="Email" />
               </Box>
-              <Box>
-                <label>
-                  Email
-                  <input type="email" name="email" onChange={handleChange} />
-                </label>
+              <Box sx={{width: '100%', my: 3}}>
+                <label htmlFor="phone" />
+                <input sx={inputStyles} type="phone" name="phone" placeholder="Phone" />
               </Box>
-              <Box>
-                <label>
-                  Phone
-                  <input type="phone" name="phone" onChange={handleChange} />
-                </label>
+              <Box sx={{width: '100%', my: 3}}>
+                <label htmlFor="message" />
+                <textarea sx={inputStyles} rows={8} type="text" name="message" placeholder="Message" />
               </Box>
               <Box>
                 <Button variant="primary" type="submit">
@@ -49,12 +66,6 @@ const ContactPage = () => {
                 </Button>
               </Box>
             </form>
-          </Box>
-          <Box>
-            <p sx={{my: 3}}>What's a blog anyway? Let's anagram this:</p>
-            <p sx={{my: 3}}>B - blog, it's a blog after</p>
-            <p sx={{my: 3}}>L - log, what's a blog but a [b]log?</p>
-            <p sx={{my: 3}}>O - OG, 'cuz blogs certainly are the Original Gangster</p>
           </Box>
         </Flex>
       </div>

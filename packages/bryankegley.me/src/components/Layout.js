@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import PropTypes from 'prop-types'
 import {graphql, useStaticQuery} from 'gatsby'
-import {jsx, Flex, Box, Main} from 'theme-ui'
+import {jsx, Flex, Box, Main, Container} from 'theme-ui'
 
 import 'typeface-noto-sans'
 import 'typeface-noto-serif'
@@ -28,12 +28,13 @@ const Layout = ({children}) => {
       <Flex
         sx={{
           margin: 'auto',
-          width: '50rem',
           maxWidth: '90%',
           flexDirection: 'column',
         }}
       >
-        <Main>{children}</Main>
+        <Main>
+          <Container>{children}</Container>
+        </Main>
         <footer>
           <Footer />
         </footer>
