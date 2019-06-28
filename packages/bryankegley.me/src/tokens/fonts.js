@@ -1,6 +1,5 @@
 const fonts = {
-  sans: 'Noto Sans',
-  serif: 'Noto Serif',
+  sans: 'Lato',
   mono: 'Menlo, monospace',
 }
 

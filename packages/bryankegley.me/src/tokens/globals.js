@@ -6,7 +6,7 @@ export default createGlobalStyle`
     }
     html {
         font-size: 16px;
-        font-family: ${props => props.theme.fonts.sans};
+        font-family: Lato;
         margin: 0px;
         padding: 0px;
         width: 100%;
@@ -17,7 +17,7 @@ export default createGlobalStyle`
         height: 100%;
         margin: 0px;
         padding: 0px;
-        color: ${props => props.theme.colors.black}
+        color: black;
     }
 
     p {

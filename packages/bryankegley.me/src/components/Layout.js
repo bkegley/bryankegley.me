@@ -1,10 +1,7 @@
-import React from 'react'
+/** @jsx jsx */
 import PropTypes from 'prop-types'
 import {graphql, useStaticQuery} from 'gatsby'
-import {Flex, Box} from 'rebass'
-import styled, {ThemeProvider} from 'styled-components'
-import theme from '../tokens/theme'
-import CreateGlobalStyle from '../tokens/globals'
+import {jsx, Flex, Box, Main} from 'theme-ui'
 
 import 'typeface-noto-sans'
 import 'typeface-noto-serif'
@@ -13,42 +10,35 @@ import Header from './Header'
 import Footer from './Footer'
 import useDarkMode from './useDarkMode'
 
-const SiteWrapper = styled(Box)`
-  min-height: 100vh;
-  min-width: 100vw;
-  height: 100%;
-  width: 100%;
-`
-
-const LayoutWrapper = styled(Flex)`
-  margin: auto;
-  width: 50rem;
-  max-width: 90%;
-`
-
-const Main = styled.main`
-  margin-top: 7rem;
-`
-
-const Layout = ({children, pathName}) => {
+const Layout = ({children}) => {
   const [darkMode, toggleDarkMode] = useDarkMode(true)
   const data = useStaticQuery(layoutQuery)
 
   return (
-    <ThemeProvider theme={theme(darkMode)}>
-      <>
-        <CreateGlobalStyle />
-        <SiteWrapper bg="white">
-          <Header siteTitle={data.site.siteMetadata.title} toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-          <LayoutWrapper flexDirection="column">
-            <Main>{children}</Main>
-            <footer>
-              <Footer />
-            </footer>
-          </LayoutWrapper>
-        </SiteWrapper>
-      </>
-    </ThemeProvider>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        minWidth: '100vw',
+        height: '100%',
+        width: '100%',
+        bg: 'white',
+      }}
+    >
+      <Header siteTitle={data.site.siteMetadata.title} toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+      <Flex
+        sx={{
+          margin: 'auto',
+          width: '50rem',
+          maxWidth: '90%',
+          flexDirection: 'column',
+        }}
+      >
+        <Main>{children}</Main>
+        <footer>
+          <Footer />
+        </footer>
+      </Flex>
+    </Box>
   )
 }
 

@@ -1,7 +1,8 @@
-const colors = darkMode => ({
-  primary: '#7077f7',
-  black: darkMode ? '#ffffff' : '#262626',
-  white: darkMode ? '#262626' : '#ffffff',
+const colors = {
+  primary: 'rgb(238, 66, 102)',
+  secondary: 'rgb(42, 30, 92)',
+  black: '#262626',
+  white: '#ffffff',
   grays: {
     100: '#f9f9fa',
     200: '#ecedf0',
@@ -26,6 +27,6 @@ const colors = darkMode => ({
     900: '#484ea0',
     1000: '#333772',
   },
-})
+}
 
 export default colors

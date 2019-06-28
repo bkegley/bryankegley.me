@@ -1,48 +1,47 @@
+/** @jsx jsx */
 import {Link} from 'gatsby'
 import PropTypes from 'prop-types'
-import React from 'react'
-import {Flex, Box, Heading} from 'rebass'
-import styled from 'styled-components'
-import Toggle from './ThemeToggle'
+import {jsx, Flex, Box} from 'theme-ui'
 
-const HeaderWrapper = styled.header`
-  border-bottom: 1px solid ${props => props.theme.colors.grays[300]};
-`
-
-const HeaderInner = styled(Flex)`
-  width: 60rem;
-  max-width: 90%;
-  margin: auto;
-`
-
-const StyledLink = styled(Link)`
-  color: inherit;
-  text-decoration: none;
-  text-transform: lowercase;
-`
+const StyledLink = ({children, to}) => {
+  return (
+    <Link to={to} sx={{color: 'inherit', textDecoration: 'none', textTransform: 'lowercase'}}>
+      {children}
+    </Link>
+  )
+}
 
 const Header = ({siteTitle = '', toggleDarkMode, darkMode}) => {
   return (
-    <HeaderWrapper>
-      <HeaderInner flexDirection="row" alignItems="center" justifyContent="space-between" flexWrap="wrap" py={3}>
-        <Heading as="h1" fontSize={5}>
+    <Box>
+      <Flex
+        sx={{
+          width: '60rem',
+          maxWidth: '90%',
+          margin: 'auto',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          py: 3,
+        }}
+      >
+        <h1 sx={{fontSize: 5, color: 'primary', my: 1}}>
           <StyledLink to="/">{siteTitle}</StyledLink>
-        </Heading>
+        </h1>
         <Flex>
-          <Box mx={2}>
-            <StyledLink to="/posts">Posts</StyledLink>
+          <Box sx={{mx: 2}}>
+            <StyledLink to="/about">about</StyledLink>
           </Box>
-          <Box mx={2}>
-            <StyledLink to="/about">About</StyledLink>
+          <Box sx={{mx: 2}}>
+            <StyledLink to="/blog">blog</StyledLink>
           </Box>
-          <Box mx={2}>
-            <Toggle darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
-              Theme
-            </Toggle>
+          <Box sx={{mx: 2}}>
+            <StyledLink to="/contact">contact</StyledLink>
           </Box>
         </Flex>
-      </HeaderInner>
-    </HeaderWrapper>
+      </Flex>
+    </Box>
   )
 }
 

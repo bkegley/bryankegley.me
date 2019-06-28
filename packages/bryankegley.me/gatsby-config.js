@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Bryan Kegley`,
+    title: `bk`,
     description: `A personal blog by Bryan Kegley`,
     author: `@bkegley`,
   },
@@ -25,13 +25,6 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/archive.svg`, // This path is relative to the root of the site.
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `posts`,
-        path: `${__dirname}/src/posts`,
       },
     },
     {
