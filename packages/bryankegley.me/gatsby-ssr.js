@@ -1,7 +1,13 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+import React from 'react'
+import {ThemeProvider, Styled} from 'theme-ui'
+import theme from './src/tokens/theme'
 
-// You can delete this file if you're not using it
+import 'typeface-lato'
+
+export const wrapRootElement = ({element}) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Styled.root>{element}</Styled.root>
+    </ThemeProvider>
+  )
+}
