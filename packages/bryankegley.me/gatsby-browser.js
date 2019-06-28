@@ -1,7 +1,6 @@
 import React from 'react'
 import {ThemeProvider, Styled} from 'theme-ui'
 import theme from './src/tokens/theme'
-import {toTheme} from '@theme-ui/typography'
 
 import 'typeface-lato'
 
