@@ -51,28 +51,13 @@ const IndexPage = props => {
         }}
       >
         <Box sx={{mb: 4, fontSize: 5, alignSelf: 'center'}}>
-          <span>and i write</span>
+          <span>and i'm a</span>
           <br />
-          <span sx={{color: 'primary'}}>software</span>
+          <span sx={{color: 'primary'}}>full-stack dev</span>
           <br />
-          <span>to give coffee brands</span>
+          <span>living in</span>
           <br />
-          <span sx={{color: 'primary'}}>superpowers</span>
-        </Box>
-        <Box sx={{alignSelf: 'flex-start', fontSize: 3}}>
-          <p>
-            Coffee brands face unique challenges. Spanning continents and languages, coffee professionals are united by
-            one thing: making all of coffee better. Creating a transparent, efficient, and effective coffee business
-            with global impact isn't easy but I'm here to help.
-          </p>
-        </Box>
-        <Box sx={{alignSelf: 'flex-start', fontSize: 3}}>
-          <p>
-            Why me? I've been there. I've turned on the lights at 5am only to turn them off again at close. I've
-            scrutinized cost of goods and negotiated with vendors. I've built cafés, programs and lots of friendships.
-            I'm a coffee professional at heart using software to make coffee better.
-          </p>
-          <p>From finca to drinka' I've done it all and I'm here to help.</p>
+          <span sx={{color: 'primary'}}>Sioux Falls</span>
         </Box>
         <Box sx={{alignSelf: 'center', mt: 4}}>
           <Link to="/contact">
