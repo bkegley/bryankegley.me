@@ -8,6 +8,7 @@ import Button from '../components/Button'
 
 const IndexPage = props => {
   const {data} = props
+  console.log({data})
   return (
     <Layout pathName={props['*']}>
       <SEO title="Home" keywords={[`blog`, `technology`, `react`, `javascript`]} />
