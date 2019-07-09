@@ -11960,6 +11960,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
+typeface-aileron@^0.0.66:
+  version "0.0.66"
+  resolved "https://registry.yarnpkg.com/typeface-aileron/-/typeface-aileron-0.0.66.tgz#862c6cda14bd649f782c230d0577536761443e05"
+  integrity sha512-M9uwbrFQzwLvq034DylqguoDNEj6I5/rLrrcnRXCrICxJdDoP2vPUMpoU74MFb8ofZ0DYtoA28yOi+1XyH78MQ==
+
 typeface-lato@^0.0.54:
   version "0.0.54"
   resolved "https://registry.yarnpkg.com/typeface-lato/-/typeface-lato-0.0.54.tgz#6ea56309a8b0cfdb7e8246e05de4b58b8272b47c"
