@@ -5,7 +5,7 @@ const styles = {
     padding: 0,
     height: '100%',
     width: '100%',
-    fontFamily: 'sans',
+    fontFamily: 'Lato',
     fontSize: 2,
     lineHeight: 1.65,
   },
