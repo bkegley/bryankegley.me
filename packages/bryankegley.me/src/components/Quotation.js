@@ -1,12 +1,19 @@
 /** @jsx jsx */
-import {jsx, Box} from 'theme-ui'
+import {jsx} from 'theme-ui'
 
 const Quotation = ({children}) => {
   return (
-    <Box sx={{position: 'relative', fontStyle: 'italic'}}>
-      <span sx={{position: 'absolute', fontSize: 128, opacity: 0.25}}>"</span>
-      <Box sx={{padding: 4, color: 'primary'}}>{children}</Box>
-    </Box>
+    <blockquote
+      sx={{
+        fontFamily: 'Aileron',
+        fontWeight: 100,
+        fontSize: [6, 6, '80px', '100px'],
+        lineHeight: 1.15,
+        textAlign: 'center',
+      }}
+    >
+      {children}
+    </blockquote>
   )
 }
 
