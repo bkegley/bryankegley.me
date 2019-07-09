@@ -1,0 +1,39 @@
+---
+title: coffeahub.com
+summary: coffeahub.com is an internal application for Coffea Roasterie to streamline business operations and make information from various internal and third-party services more accessible across the organization.
+organization: Coffea Roasterie
+tags: React.js, Gatsby, GraphQL, MongoDB, Microservices Architecture
+---
+
+import CaseStudySection from '../../components/CaseStudySection'
+import Quotation from '../../components/Quotation'
+
+<CaseStudySection title="Problem">
+  Coffea Roasterie is a growing specialty coffee roaster/retailer in the process of opening a fourth café.
+  Growth causes challenges for many businesses but can present unique challenges for small businesses.
+  Furthering a geographic presence causes strain to these existing difficulties.
+  The primary goal of coffeahub.com is to alleviate the challenges a growing small business faces.
+
+Local companies handle growth with the help of many third-party applications that solve immediate pain-points (sales,
+scheduling, POS, etc.). However, over time this leads to redundant data points, increased labor and data entry errors,
+and difficulty finding crucial business operations. Coffea Roasterie needed a single platform to consolidate
+information across the organization so that they could continue to push forward in the specialty coffee industry.
+
+</CaseStudySection>
+
+<CaseStudySection title="Why Microservices?">
+  I landed on using a microservices architecture for the project as I would be the only developer on the project. Being
+  able to build, test, and maintain isolated units of the backend of the application lowered the cognitive startup time
+  for working on the project. Implementation details for each of the various services (authentication, Shopify, Square,
+  When I Work, etc.) weren’t important as the project continued. This made adding additional services trivial as the
+  scope of the project increased over time.
+</CaseStudySection>
+
+<Quotation>"This is a really cool quotation about some stuff that I think you should know"</Quotation>
+
+<CaseStudySection title="Building a GraphQL API">
+  Utilizing GraphQL for the project was one of the best decisions for speed and maintainability. The self-documenting
+  nature of a GraphQL API made it accessible as a solo developer while developing on different parts of the stack. Like
+  the decision to use microservices, utilizing GraphQL allowed the frontend to not be concerned with the implementation
+  of data-fetching across various APIs which sped development significantly.
+</CaseStudySection>
