@@ -64,13 +64,13 @@ const About = () => {
           </p>
           <p>
             After school, I took a position as interim pastor of a small, rural church going through a difficult
-            transition. Here, I learned how to translate lofty ideas into practical encouragments. Here, I learned that
+            transition. Here, I learned how to translate lofty ideas into practical encouragements. Here, I learned that
             Kierkegaard both mattered and could be comprehended by farmers and cashiers when communicated with empathy.
             This time of my life proved to be highly valuable as I learned the practical, rubber-on-the-road skills of
             compassion and care in communicating.
           </p>
           <p>
-            The next five years I spent leading a specialty coffeee roaster/retailer as CEO. Like a good German
+            The next five years I spent leading a specialty coffee roaster/retailer as CEO. Like a good German
             philosophy lover, I recognized the influence language has on culture. We often assume that language is
             passive, just describing the world around us, but my years leading taught me that language is creative,
             forming reality and perception. Faced with difficulties, clear and concise language helped a large team
