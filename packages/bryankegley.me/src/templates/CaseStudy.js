@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React from 'react'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import {graphql} from 'gatsby'
 import Layout from '../components/Layout'
 import {Styled, Flex, Box, jsx} from 'theme-ui'
@@ -69,7 +69,7 @@ const CaseStudy = ({data}) => {
         <Styled.h2 sx={{textTransform: 'uppercase'}}>Case Study</Styled.h2>
       </Box>
       <Box>
-        <MDXRenderer>{data.mdx.code.body}</MDXRenderer>
+        <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </Box>
     </Layout>
   )
@@ -86,9 +86,7 @@ export const query = graphql`
         organization
         tags
       }
-      code {
-        body
-      }
+      body
     }
   }
 `
