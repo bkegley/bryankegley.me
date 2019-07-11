@@ -3,11 +3,12 @@ import {graphql, Link} from 'gatsby'
 import Image from 'gatsby-image'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import {jsx, Flex, Box} from 'theme-ui'
+import {jsx, Flex, Box, Styled} from 'theme-ui'
 import Button from '../components/Button'
 
 const IndexPage = props => {
   const {data} = props
+  console.log({data})
   return (
     <Layout pathName={props['*']}>
       <SEO title="Home" keywords={[`blog`, `technology`, `react`, `javascript`]} />
@@ -29,15 +30,15 @@ const IndexPage = props => {
             letterSpacing: '.75rem',
           }}
         >
-          <h1>i'm</h1>
-          <h1>
+          <Styled.h1>i'm</Styled.h1>
+          <Styled.h1>
             <span sx={{color: 'primary'}}>b</span>
             <span>ryan</span>
-          </h1>
-          <h1>
+          </Styled.h1>
+          <Styled.h1>
             <span sx={{color: 'primary'}}>k</span>
             <span>egley</span>
-          </h1>
+          </Styled.h1>
         </Box>
         <Image sx={{opacity: '.25'}} fluid={data.headerImage.childImageSharp.fluid} />
       </Box>
@@ -59,14 +60,14 @@ const IndexPage = props => {
           <br />
           <span sx={{color: 'primary'}}>Sioux Falls</span>
         </Box>
-        <Box sx={{alignSelf: 'center', mt: 4}}>
-          <Link to="/contact">
-            <Button variant="primary" sx={{fontSize: 3}}>
-              Let's Talk
-            </Button>
-          </Link>
-        </Box>
       </Flex>
+      <Box sx={{textAlign: 'center', mt: 4}}>
+        <Link to="/contact">
+          <Button variant="primary" sx={{fontSize: 3}}>
+            Let's Talk
+          </Button>
+        </Link>
+      </Box>
     </Layout>
   )
 }

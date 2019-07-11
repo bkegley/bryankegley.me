@@ -5,7 +5,17 @@ import {jsx, Flex, Box} from 'theme-ui'
 
 const StyledLink = ({children, to}) => {
   return (
-    <Link to={to} sx={{color: 'inherit', textDecoration: 'none', textTransform: 'lowercase'}}>
+    <Link
+      to={to}
+      sx={{
+        color: 'inherit',
+        textDecoration: 'none',
+        textTransform: 'lowercase',
+        ':hover': {
+          color: 'primary',
+        },
+      }}
+    >
       {children}
     </Link>
   )
@@ -30,9 +40,12 @@ const Header = ({siteTitle = '', toggleDarkMode, darkMode}) => {
           <StyledLink to="/">{siteTitle}</StyledLink>
         </h1>
         <Flex>
-          {/* <Box sx={{mx: 2}}>
+          <Box sx={{mx: 2}}>
             <StyledLink to="/about">about</StyledLink>
-          </Box> */}
+          </Box>
+          <Box sx={{mx: 2}}>
+            <StyledLink to="/studies">work</StyledLink>
+          </Box>
           {/* <Box sx={{mx: 2}}>
             <StyledLink to="/blog">blog</StyledLink>
           </Box> */}

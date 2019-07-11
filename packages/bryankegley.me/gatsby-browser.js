@@ -3,6 +3,7 @@ import {ThemeProvider, Styled} from 'theme-ui'
 import theme from './src/tokens/theme'
 
 import 'typeface-lato'
+import 'typeface-aileron'
 
 export const wrapRootElement = ({element}) => {
   return (
