@@ -9,7 +9,7 @@ import Label from '../components/Label'
 const CaseStudySnippet = ({study}) => {
   return (
     <Flex sx={{flexDirection: 'column', alignItems: 'flex-start'}}>
-      <Link sx={{textDecoration: 'none', color: 'inherit'}} to={study.fields.slug}>
+      <Link sx={{textDecoration: 'none', color: 'inherit', ':hover': {color: 'primary'}}} to={study.fields.slug}>
         <Styled.h2>{study.frontmatter.title}</Styled.h2>
       </Link>
       <Flex
