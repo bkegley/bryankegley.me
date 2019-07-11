@@ -3,7 +3,7 @@ import {graphql, Link} from 'gatsby'
 import Image from 'gatsby-image'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import {jsx, Flex, Box} from 'theme-ui'
+import {jsx, Flex, Box, Styled} from 'theme-ui'
 import Button from '../components/Button'
 
 const IndexPage = props => {
@@ -30,15 +30,15 @@ const IndexPage = props => {
             letterSpacing: '.75rem',
           }}
         >
-          <h1>i'm</h1>
-          <h1>
+          <Styled.h1>i'm</Styled.h1>
+          <Styled.h1>
             <span sx={{color: 'primary'}}>b</span>
             <span>ryan</span>
-          </h1>
-          <h1>
+          </Styled.h1>
+          <Styled.h1>
             <span sx={{color: 'primary'}}>k</span>
             <span>egley</span>
-          </h1>
+          </Styled.h1>
         </Box>
         <Image sx={{opacity: '.25'}} fluid={data.headerImage.childImageSharp.fluid} />
       </Box>
