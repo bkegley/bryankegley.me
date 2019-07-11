@@ -60,14 +60,14 @@ const IndexPage = props => {
           <br />
           <span sx={{color: 'primary'}}>Sioux Falls</span>
         </Box>
-        <Box sx={{alignSelf: 'center', mt: 4}}>
-          <Link to="/contact">
-            <Button variant="primary" sx={{fontSize: 3}}>
-              Let's Talk
-            </Button>
-          </Link>
-        </Box>
       </Flex>
+      <Box sx={{textAlign: 'center', mt: 4}}>
+        <Link to="/contact">
+          <Button variant="primary" sx={{fontSize: 3}}>
+            Let's Talk
+          </Button>
+        </Link>
+      </Box>
     </Layout>
   )
 }
