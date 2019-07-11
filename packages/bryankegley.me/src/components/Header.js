@@ -33,6 +33,9 @@ const Header = ({siteTitle = '', toggleDarkMode, darkMode}) => {
           <Box sx={{mx: 2}}>
             <StyledLink to="/about">about</StyledLink>
           </Box>
+          <Box sx={{mx: 2}}>
+            <StyledLink to="/studies">work</StyledLink>
+          </Box>
           {/* <Box sx={{mx: 2}}>
             <StyledLink to="/blog">blog</StyledLink>
           </Box> */}
