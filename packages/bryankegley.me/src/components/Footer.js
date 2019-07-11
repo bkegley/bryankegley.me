@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from 'react'
 import {Link} from 'gatsby'
 import {jsx, Flex, Box} from 'theme-ui'
 import Twitter from 'react-feather/dist/icons/twitter'
@@ -33,12 +32,22 @@ const Footer = () => {
       </Flex>
       <Flex sx={{flexDirection: 'row', alignItems: 'center'}}>
         <Box sx={{mr: 4}}>
-          <a href="https://mobile.twitter.com/bkegley" target="_blank" sx={{':hover': {color: 'primary'}}}>
+          <a
+            href="https://mobile.twitter.com/bkegley"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{':hover': {color: 'primary'}}}
+          >
             <Twitter />
           </a>
         </Box>
         <Box sx={{mr: 4}}>
-          <a href="https://github.com/bkegley" target="_blank" sx={{':hover': {color: 'primary'}}}>
+          <a
+            href="https://github.com/bkegley"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{':hover': {color: 'primary'}}}
+          >
             <GitHub />
           </a>
         </Box>
@@ -46,6 +55,7 @@ const Footer = () => {
           <a
             href="https://www.linkedin.com/in/bryan-kegley-120649b5/"
             target="_blank"
+            rel="noopener noreferrer"
             x={{':hover': {color: 'primary'}}}
           >
             <LinkedIn />
