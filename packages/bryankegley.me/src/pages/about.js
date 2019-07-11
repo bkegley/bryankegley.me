@@ -4,6 +4,7 @@ import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import {jsx, Styled, Flex, Box} from 'theme-ui'
 import Label from '../components/Label'
+import Quotation from '../components/Quotation'
 
 const Meta = () => {
   return (
@@ -40,7 +41,7 @@ const About = () => {
                 letterSpacing: 1.25,
               }}
             >
-              My name is Bryan Kegley. I'm a full-stack web developer based in Sioux Falls, SD. My unique background in
+              My name is Bryan Kegley. I'm a full-stack developer based in Sioux Falls, SD. My unique background in
               leading people and organizations enables me to write software that meets real business and human needs.
               Currently, you'll find me hacking around in Node, GraphQL and React.
             </Box>
@@ -50,7 +51,7 @@ const About = () => {
           </Box>
         </Flex>
         <Box mt={5}>
-          <Styled.h3>My Background</Styled.h3>
+          <Styled.h3>My Story</Styled.h3>
           <p>
             If you're here, then skimming those bigger words up there must not have satisfied you. Welcome then, to the
             curious occupational upbringing of Bryan Kegley. Prepare for some forks in the road.
@@ -78,10 +79,10 @@ const About = () => {
             employees that I didn't have direct contact with.
           </p>
           <p>
-            It was during these years that I grew curious about coding to the point of devloping (puns...) a knack for
+            It was during these years that I grew curious about coding to the point of developing (puns...) a knack for
             finding ways to integrate (more puns...) code into our business operations. Automating accounting, lead
-            generation, order fulfillment, and sales reporting solved real business problems but (perhaps wrongly)
-            solved my need to code.
+            generation, order fulfillment, and sales reporting solved real business problems but (perhaps even more
+            satisfyingly) solved my need to code.
           </p>
         </Box>
       </Box>

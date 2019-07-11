@@ -30,9 +30,9 @@ const Header = ({siteTitle = '', toggleDarkMode, darkMode}) => {
           <StyledLink to="/">{siteTitle}</StyledLink>
         </h1>
         <Flex>
-          {/* <Box sx={{mx: 2}}>
+          <Box sx={{mx: 2}}>
             <StyledLink to="/about">about</StyledLink>
-          </Box> */}
+          </Box>
           {/* <Box sx={{mx: 2}}>
             <StyledLink to="/blog">blog</StyledLink>
           </Box> */}
