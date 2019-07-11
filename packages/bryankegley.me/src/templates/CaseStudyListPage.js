@@ -40,7 +40,7 @@ const CaseStudies = ({data}) => {
   return (
     <Layout>
       <SEO title="Case Studies" />
-      <Styled.h1>Case Studies</Styled.h1>
+      <Styled.h1>case studies</Styled.h1>
       <Flex sx={{flexDirection: 'column', mb: 5}}>
         {data.allMdx.edges.map(({node: study}) => {
           return (

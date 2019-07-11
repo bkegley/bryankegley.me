@@ -30,7 +30,7 @@ const About = () => {
     <Layout>
       <SEO title="About" />
       <Box sx={{mb: [4, 4, 5, 5]}}>
-        <Styled.h1 sx={{mb: 5}}>Hi there,</Styled.h1>
+        <Styled.h1 sx={{mb: 5}}>hi there,</Styled.h1>
         <Flex sx={{flexDirection: ['column', 'column', 'row', 'row'], mb: [4, 4, 5, 5]}}>
           <Box sx={{flex: 3, mr: [0, 0, 5, 5], mb: [2, 2, 5, 5]}}>
             <Box
