@@ -7,7 +7,7 @@ const Quotation = ({children}) => {
       sx={{
         fontFamily: 'Aileron',
         fontWeight: 100,
-        fontSize: [6, 6, '80px', '100px'],
+        fontSize: [6, 6, '80px', '80px'],
         lineHeight: 1.15,
         textAlign: 'center',
       }}
