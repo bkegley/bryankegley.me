@@ -7,10 +7,11 @@ import Badge from '../components/Badge'
 import Label from '../components/Label'
 
 const CaseStudySnippet = ({study}) => {
-  console.log({study})
   return (
     <Flex sx={{flexDirection: 'column', alignItems: 'flex-start'}}>
-      <Styled.h2>{study.frontmatter.title}</Styled.h2>
+      <Link sx={{textDecoration: 'none', color: 'inherit'}} to={study.fields.slug}>
+        <Styled.h2>{study.frontmatter.title}</Styled.h2>
+      </Link>
       <Flex
         sx={{
           flexDirection: ['column', 'column', 'row', 'row'],
