@@ -57,7 +57,11 @@ const CaseStudies = ({data}) => {
 
 export const query = graphql`
   query ListCaseStudiesQuery($skip: Int) {
-    allMdx(sort: {order: DESC, fields: frontmatter___order}, skip: $skip) {
+    allMdx(
+      sort: {order: DESC, fields: frontmatter___order}
+      skip: $skip
+      filter: {fields: {sourceName: {eq: "studies"}}}
+    ) {
       pageInfo {
         hasNextPage
       }
