@@ -14,6 +14,10 @@ exports.onCreateNode = ({node, actions, getNode}) => {
         sourceName = 'studies'
         break
       }
+      case 'notes': {
+        sourceName = 'notes'
+        break
+      }
       default: {
         break
       }
@@ -97,5 +101,86 @@ exports.createPages = async ({graphql, actions}) => {
       limit: null,
       currentPage: 1,
     },
+  })
+
+  const allNoteMdx = await graphql(`
+    {
+      allMdx(filter: {fields: {sourceName: {eq: "notes"}}}) {
+        totalCount
+        edges {
+          node {
+            id
+            frontmatter {
+              tags
+            }
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  // Create Note pages
+  allNoteMdx.data.allMdx.edges.forEach(({node}) => {
+    createPage({
+      path: node.fields.slug,
+      component: path.resolve(`src/templates/Note.js`),
+      context: {
+        id: node.id,
+      },
+    })
+  })
+
+  // Create Note List pages
+  const notesListPageLength = 2
+  const numberOfNotesPages = Math.ceil(allNoteMdx.data.allMdx.totalCount / notesListPageLength)
+
+  Array.from(Array(numberOfNotesPages)).forEach((item, index) => {
+    createPage({
+      path: index > 0 ? `/notes/${index + 1}` : `/notes`,
+      component: path.resolve(`src/templates/NoteListPage.js`),
+      context: {
+        skip: index * notesListPageLength,
+        limit: notesListPageLength,
+        currentPage: index + 1,
+      },
+    })
+  })
+
+  // Create TagList pages
+
+  const allMdx = await graphql(`
+    {
+      allMdx {
+        totalCount
+        edges {
+          node {
+            id
+            frontmatter {
+              tags
+            }
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `)
+  const tags = allMdx.data.allMdx.edges.reduce((tagArray, {node}) => {
+    const newTags = node.frontmatter.tags.filter(tag => tagArray.indexOf(tag) === -1)
+    return tagArray.concat(newTags)
+  }, [])
+
+  tags.forEach(tag => {
+    createPage({
+      path: `/tags/${tag}`,
+      component: path.resolve(`src/templates/Tag.js`),
+      context: {
+        tag: [tag],
+      },
+    })
   })
 }

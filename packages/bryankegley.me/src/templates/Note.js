@@ -12,15 +12,9 @@ import ChevronUp from 'react-feather/dist/icons/chevron-up'
 const Meta = ({data}) => {
   return (
     <>
-      <Box sx={{mb: 4}}>
-        <Box sx={{mb: 1}}>
-          <Label>Organization</Label>
-        </Box>
-        <Box sx={{color: 'primary', fontSize: 4}}>{data.mdx.frontmatter.organization}</Box>
-      </Box>
       <Box sx={{my: 4}}>
         <Box sx={{mb: 1}}>
-          <Label>Technologies</Label>
+          <Label>Tags</Label>
         </Box>
         <Box>
           {data.mdx.frontmatter.tags.map(tag => {
@@ -32,7 +26,7 @@ const Meta = ({data}) => {
   )
 }
 
-const CaseStudy = ({data}) => {
+const PostTemplate = ({data}) => {
   const [showMeta, setShowMeta] = React.useState(false)
   return (
     <Layout>
@@ -65,9 +59,6 @@ const CaseStudy = ({data}) => {
           </Box>
         </Box>
       </Flex>
-      <Box sx={{textAlign: 'center'}}>
-        <Styled.h2 sx={{textTransform: 'uppercase'}}>Case Study</Styled.h2>
-      </Box>
       <Box>
         <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </Box>
@@ -76,14 +67,14 @@ const CaseStudy = ({data}) => {
 }
 
 export const query = graphql`
-  query CaseStudyQuery($id: String) {
+  query PostQuery($id: String) {
     mdx(id: {eq: $id}) {
       id
       timeToRead
       frontmatter {
         title
         summary
-        organization
+        date
         tags
       }
       body
@@ -91,4 +82,4 @@ export const query = graphql`
   }
 `
 
-export default CaseStudy
+export default PostTemplate
