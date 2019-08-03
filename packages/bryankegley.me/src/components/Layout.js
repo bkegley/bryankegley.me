@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import {graphql, useStaticQuery} from 'gatsby'
 import {jsx, Flex, Box, Main, Container} from 'theme-ui'
 
-import 'typeface-noto-sans'
-import 'typeface-noto-serif'
-
 import Header from './Header'
 import Footer from './Footer'
 import useDarkMode from './useDarkMode'
