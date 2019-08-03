@@ -134,7 +134,7 @@ exports.createPages = async ({graphql, actions}) => {
   })
 
   // Create Note List pages
-  const notesListPageLength = 2
+  const notesListPageLength = 5
   const numberOfNotesPages = Math.ceil(allNoteMdx.data.allMdx.totalCount / notesListPageLength)
 
   Array.from(Array(numberOfNotesPages)).forEach((item, index) => {
