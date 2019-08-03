@@ -26,7 +26,7 @@ const CaseStudySnippet = ({study}) => {
       </Flex>
       <Box sx={{mb: 3}}>{study.frontmatter.summary}</Box>
       <Flex sx={{flexWrap: 'wrap'}}>
-        {study.frontmatter.tags ? study.frontmatter.tags.split(',').map(tag => <Badge>{tag}</Badge>) : null}
+        {study.frontmatter.tags ? study.frontmatter.tags.map(tag => <Badge>{tag}</Badge>) : null}
       </Flex>
       <Box sx={{alignSelf: 'flex-end'}}>
         <Link sx={{textDecoration: 'none', color: 'primary'}} to={study.fields.slug}>
@@ -57,21 +57,17 @@ const CaseStudies = ({data}) => {
 
 export const query = graphql`
   query ListCaseStudiesQuery($skip: Int) {
-    allMdx(sort: {order: DESC, fields: frontmatter___order}, skip: $skip) {
+    allMdx(
+      sort: {order: DESC, fields: frontmatter___order}
+      skip: $skip
+      filter: {fields: {sourceName: {eq: "studies"}}}
+    ) {
       pageInfo {
         hasNextPage
       }
       edges {
         node {
-          id
-          excerpt
-          timeToRead
-          frontmatter {
-            title
-            organization
-            summary
-            tags
-          }
+          ...CaseStudyFragment
           fields {
             slug
           }

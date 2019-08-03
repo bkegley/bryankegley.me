@@ -44,11 +44,11 @@ const Header = ({siteTitle = '', toggleDarkMode, darkMode}) => {
             <StyledLink to="/about">about</StyledLink>
           </Box>
           <Box sx={{mx: 2}}>
+            <StyledLink to="/notes">notes</StyledLink>
+          </Box>
+          <Box sx={{mx: 2}}>
             <StyledLink to="/studies">work</StyledLink>
           </Box>
-          {/* <Box sx={{mx: 2}}>
-            <StyledLink to="/blog">blog</StyledLink>
-          </Box> */}
           <Box sx={{mx: 2}}>
             <StyledLink to="/contact">contact</StyledLink>
           </Box>

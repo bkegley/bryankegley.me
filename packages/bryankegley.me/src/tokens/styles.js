@@ -1,3 +1,4 @@
+import nightOwl from '@theme-ui/prism/presets/night-owl.json'
 const styles = {
   root: {
     boxSizing: 'border-box',
@@ -24,6 +25,10 @@ const styles = {
     fontWeight: 400,
     fontSize: 5,
     color: 'primary',
+  },
+  pre: {
+    padding: 3,
+    ...nightOwl,
   },
 }
 
