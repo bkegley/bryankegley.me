@@ -78,15 +78,7 @@ const CaseStudy = ({data}) => {
 export const query = graphql`
   query CaseStudyQuery($id: String) {
     mdx(id: {eq: $id}) {
-      id
-      timeToRead
-      frontmatter {
-        title
-        summary
-        organization
-        tags
-      }
-      body
+      ...CaseStudyFragment
     }
   }
 `

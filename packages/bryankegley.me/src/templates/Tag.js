@@ -30,18 +30,10 @@ export const query = graphql`
     allMdx(sort: {order: DESC, fields: frontmatter___date}, filter: {frontmatter: {tags: {in: $tag}}}) {
       edges {
         node {
-          id
-          timeToRead
-          frontmatter {
-            title
-            summary
-            date
-            tags
-          }
+          ...NoteFragment
           fields {
             slug
           }
-          body
         }
       }
     }

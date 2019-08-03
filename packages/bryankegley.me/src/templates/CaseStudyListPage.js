@@ -67,15 +67,7 @@ export const query = graphql`
       }
       edges {
         node {
-          id
-          excerpt
-          timeToRead
-          frontmatter {
-            title
-            organization
-            summary
-            tags
-          }
+          ...CaseStudyFragment
           fields {
             slug
           }
