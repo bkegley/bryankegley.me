@@ -15,7 +15,6 @@ const Layout = ({children}) => {
     <Box
       sx={{
         minHeight: '100vh',
-        minWidth: '100vw',
         height: '100%',
         width: '100%',
         bg: 'white',
