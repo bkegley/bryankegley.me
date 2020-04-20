@@ -1,0 +1,15 @@
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+
+.content {
+  max-width: 960px;
+}
+
+.footer {
+  @apply fixed bottom-0 left-0 bg-gray-800 w-full;
+  min-height: 200px;
+}
+
+/* purgecss end ignore */
+@tailwind utilities;
