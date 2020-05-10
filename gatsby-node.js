@@ -47,13 +47,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   createPage({
-    path: "/notes",
-    component: path.resolve(`${__dirname}/src/templates/NoteList.tsx`),
-  });
-
-  createPage({
-    path: "/snippets",
-    component: path.resolve(`${__dirname}/src/templates/SnippetList.tsx`),
+    path: "/posts",
+    component: path.resolve(`${__dirname}/src/templates/Posts.tsx`),
   });
 
   result.data.allMdx.edges.forEach(({ node }) => {
@@ -70,10 +65,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 exports.onPreBootstrap = ({ store }) => {
   const { program } = store.getState();
 
-  const dirs = [
-    path.join(program.directory, "notes"),
-    path.join(program.directory, "snippets"),
-  ];
+  const dirs = [path.join(program.directory, "posts")];
 
   dirs.forEach((dir) => {
     if (!fs.existsSync(dir)) {
@@ -98,6 +90,8 @@ exports.createSchemaCustomization = ({ actions }) => {
         type Frontmatter {
             title: String!
             date: Date
+            summary: String
+            type: String
             tags: [String!]
         }
     `;

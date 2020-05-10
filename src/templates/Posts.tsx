@@ -1,8 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Layout } from "../components/Layout";
+import { H1, H2, Layout, PostList as PostListComponent } from "../components";
 
-interface SnippetListProps {
+interface PostListProps {
   data: {
     allMdx: {
       edges: Array<{
@@ -21,44 +21,31 @@ interface SnippetListProps {
   };
 }
 
-const SnippetList = ({ data }: SnippetListProps) => {
+const PostList = ({ data }: PostListProps) => {
   return (
     <Layout>
-      <h1>Snippets</h1>
-      {data.allMdx.edges.map(({ node }) => {
-        return (
-          <div>
-            <h3>{node.frontmatter.title}</h3>
-          </div>
-        );
-      })}
+      <H1>posts</H1>
+      <PostListComponent posts={data.allMdx.edges} />
     </Layout>
   );
 };
 
 export const query = graphql`
-  query ListSnippetsQuery {
+  query ListPostsQuery {
     allMdx(
       sort: { order: DESC, fields: frontmatter___date }
-      filter: { fields: { sourceName: { eq: "snippets" } } }
+      filter: { fields: { sourceName: { eq: "posts" } } }
     ) {
       pageInfo {
         hasNextPage
       }
       edges {
         node {
-          id
-          frontmatter {
-            title
-            tags
-          }
-          fields {
-            slug
-          }
+          ...PostListFragment
         }
       }
     }
   }
 `;
 
-export default SnippetList;
+export default PostList;

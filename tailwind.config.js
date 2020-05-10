@@ -2,9 +2,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#2DE0A7",
+        primary: "#ee4266",
         secondary: "#AE81FF",
-        accent: "#FF6F9F",
         gray: {
           100: "#F8FAFD",
           200: "#F1EFF7",
@@ -16,6 +15,10 @@ module.exports = {
           800: "#292A44",
           900: "#212136",
         },
+      },
+      fontSize: {
+        "7xl": "5rem",
+        "8xl": "6rem",
       },
     },
   },

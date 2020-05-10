@@ -5,16 +5,9 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "notes",
-        path: `${__dirname}/notes`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "snippets",
-        path: `${__dirname}/snippets`,
-      },
+        name: 'posts',
+        path: `${__dirname}/posts`
+      }
     },
     {
       resolve: "gatsby-plugin-postcss",

@@ -8,10 +8,10 @@ export interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="min-h-screen bg-gray-500 text-gray-300 px-6 lg:px-0">
-      <div className="content container w-full mx-auto">
+    <div className="bg-gray-800 text-gray-300 text-lg lg:text-xl px-6 lg:px-0 relative">
+      <div className="wrapper container mx-auto min-h-screen">
         <Header />
-        <main>{children}</main>
+        <main className="content mx-4 lg:mx-auto mb-32">{children}</main>
       </div>
       <Footer />
     </div>

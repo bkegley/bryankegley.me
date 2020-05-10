@@ -1,10 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { Layout } from "../components/Layout";
-import Note from "./Note";
-import Snippet from "./Snippet";
+import { Badge, H1, Label, Layout } from "../components";
 
 export interface PostTemplateProps {
   data: {
@@ -12,30 +9,45 @@ export interface PostTemplateProps {
       id: string;
       frontmatter: {
         title: string;
-        date: string;
-        tags: string[];
+        date?: string;
+        summary?: string;
+        tags?: string[];
       };
       fields: {
-        sourceName: "notes" | "snippets";
+        sourceName: "posts";
       };
       body: any;
     };
   };
 }
 
-const PostTemplate = ({ data }: PostTemplateProps) => {
-  const { sourceName } = data.mdx.fields;
+const PostTemplate = ({ data }) => {
+  const {
+    frontmatter: { summary },
+    body,
+  } = data.mdx;
+  console.log({ data });
   return (
     <Layout>
-      <h1>This is a note</h1>
-      <MDXProvider>
-        {sourceName === "notes" ? (
-          <Note data={data} />
-        ) : (
-          <Snippet data={data} />
-        )}
-        <MDXRenderer>{data.mdx.body}</MDXRenderer>
-      </MDXProvider>
+      <H1>{data.mdx.frontmatter.title}</H1>
+      <div className="flex flex-col lg:flex-row my-6 lg:my-12">
+        <div className="w-1/4 order-1 lg:order-none mb-4">
+          <div className="mb-1">
+            <Label>Tags</Label>
+          </div>
+          <div>
+            {data.mdx.frontmatter.tags.map((tag) => {
+              return <Badge key={tag}>{tag}</Badge>;
+            })}
+          </div>
+        </div>
+        <div className="w-3/4 order-none lg:order-1 lg:ml-4 mb-2 lg:mb-5">
+          <div className="text-xl lg:text-2xl">{summary}</div>
+        </div>
+      </div>
+      <div>
+        <MDXRenderer>{body}</MDXRenderer>
+      </div>
     </Layout>
   );
 };
@@ -43,16 +55,7 @@ const PostTemplate = ({ data }: PostTemplateProps) => {
 export const query = graphql`
   query PostQuery($id: String) {
     mdx(id: { eq: $id }) {
-      id
-      frontmatter {
-        title
-        date
-        tags
-      }
-      fields {
-        sourceName
-      }
-      body
+      ...PostDetailFragment
     }
   }
 `;

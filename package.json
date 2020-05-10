@@ -14,13 +14,18 @@
     "@mdx-js/mdx": "^1.5.8",
     "@mdx-js/react": "^1.5.8",
     "gatsby": "^2.20.25",
+    "gatsby-image": "^2.3.4",
     "gatsby-plugin-mdx": "^1.1.9",
     "gatsby-plugin-postcss": "^2.2.3",
     "gatsby-plugin-purgecss": "^5.0.0",
     "gatsby-plugin-typescript": "^2.3.3",
     "gatsby-source-filesystem": "^2.2.4",
+    "prism-react-renderer": "^1.1.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "typeface-aileron": "^0.0.66",
+    "typeface-exo": "^0.0.61",
+    "typeface-lato": "^0.0.75"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.6",
