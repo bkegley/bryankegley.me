@@ -1,0 +1,78 @@
+---
+title: Multi-Environment Docker
+summary: Learn how to utilize multi-stage Dockerfiles with build targets to support multiple environments.
+tags: [Docker]
+---
+
+It's quite helpful to be able to quickly fire up an application configured specifically for your environment using a single command.
+Utilizing multi-stage build and build targets we can accomplish this with Docker.
+
+## Dockerfiles
+
+```Dockerfile
+# First install all necessary dependencies as 'install' stage
+FROM node:12-alpine3.11 AS install
+WORKDIR /app
+
+COPY package.json .
+COPY yarn.lock .
+RUN yarn
+
+COPY . .
+
+# Build and run  the application
+FROM node:12-apline3.11 as build
+WORKDIR /app
+
+COPY --from=install /app /app
+
+RUN yarn build
+
+CMD ["node", "./dist/index.js" ]
+EXPOSE 4000
+```
+
+## Base docker-compose.yml
+
+The base `docker-compose.yml` file should outline only the basic information of your services. Save all of the special coffiguration for differnet environments.
+
+```yml
+version: "3.8"
+services:
+  db:
+    image: database/image
+
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+```
+
+## Set up development environment
+
+docker-compose automatically reads from both `docker-compose.yml` and `docker-compose.override.yml` which makes the override file perfect for configuring your development environment.
+
+```yml
+version: "3.8"
+services:
+  # ignore the db service as it doesn't change
+
+  backend:
+    build:
+      context: ./backend
+      # set the target to the install stage to stop the image at this step
+      target: install
+    # run the development script
+    command: "yarn develop"
+    # set a volume to listen to file changes for hot reloading
+    volumes:
+      - ./backend:/app
+
+  # frontend is set up similarly as backend
+  frontend:
+```
+
+Now running `docker-compose up --build -d` will run the application in development mode with hot reloading.
