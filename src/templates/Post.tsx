@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Badge, H1, Label, Layout } from "../components";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 
 export interface PostTemplateProps {
   data: {

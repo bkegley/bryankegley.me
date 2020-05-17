@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { H1, H2, Layout, PostList as PostListComponent } from "../components";
+import { H1, Layout, PostList as PostListComponent } from "../components";
+import { Helmet } from "react-helmet";
 
 interface PostListProps {
   data: {
@@ -24,6 +25,9 @@ interface PostListProps {
 const PostList = ({ data }: PostListProps) => {
   return (
     <Layout>
+      <Helmet>
+        <title>Posts</title>
+      </Helmet>
       <H1>posts</H1>
       <PostListComponent posts={data.allMdx.edges} />
     </Layout>

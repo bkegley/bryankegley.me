@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
 import { H1, H2, Layout, PostList } from "../components";
+import { Helmet } from "react-helmet";
 
 interface IndexPageProps {
   data: {
@@ -26,6 +27,9 @@ interface Mdx {
 const IndexPage = ({ data }: IndexPageProps) => {
   return (
     <Layout>
+      <Helmet>
+        <title>Bryan Kegley</title>
+      </Helmet>
       <div className="mb-4 lg:mb-5">
         <div className="mb-5">
           <H1>hi there,</H1>
