@@ -26,7 +26,6 @@ const PostTemplate = ({ data }) => {
     frontmatter: { summary },
     body,
   } = data.mdx;
-  console.log({ data });
   return (
     <Layout>
       <H1>{data.mdx.frontmatter.title}</H1>
@@ -45,7 +44,7 @@ const PostTemplate = ({ data }) => {
           <div className="text-xl lg:text-2xl">{summary}</div>
         </div>
       </div>
-      <div>
+      <div className="lg:mx-24">
         <MDXRenderer>{body}</MDXRenderer>
       </div>
     </Layout>
