@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Badge, H1, Label, Layout } from "../components";
+import Helmet from "react-helmet";
 
 export interface PostTemplateProps {
   data: {
@@ -23,11 +24,19 @@ export interface PostTemplateProps {
 
 const PostTemplate = ({ data }) => {
   const {
-    frontmatter: { summary },
+    frontmatter: { summary, title },
     body,
   } = data.mdx;
   return (
     <Layout>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={summary} />
+        <meta name="og:title" content="title" />
+        <meta name="og:description" content={summary} />
+        <meta name="twitter:title" content="title" />
+        <meta name="twitter:description" content={summary} />
+      </Helmet>
       <H1>{data.mdx.frontmatter.title}</H1>
       <div className="flex flex-col lg:flex-row my-6 lg:my-12">
         <div className="w-1/4 order-1 lg:order-none mb-4">
