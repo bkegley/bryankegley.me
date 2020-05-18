@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { H1, Layout, PostList as PostListComponent } from "../components";
-import { Helmet } from "react-helmet";
+import { SEO } from "../components/SEO";
 
 interface PostListProps {
   data: {
@@ -25,9 +25,7 @@ interface PostListProps {
 const PostList = ({ data }: PostListProps) => {
   return (
     <Layout>
-      <Helmet>
-        <title>Posts</title>
-      </Helmet>
+      <SEO title="Posts" description="Summary of posts" />
       <H1>posts</H1>
       <PostListComponent posts={data.allMdx.edges} />
     </Layout>

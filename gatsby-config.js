@@ -1,4 +1,17 @@
 module.exports = {
+  siteMetadata: {
+    title: 'Bryan Kegley',
+    author: {
+      name: 'Bryan Kegley',
+      description: 'Bryan writes things and codes things'
+    },
+    sitUrl: 'https://bryankegley.me',
+    social: {
+      twitter: 'bkegley',
+      github: 'bkegley',
+      twitch: 'bjkegley',
+    }
+  },
   plugins: [
     "gatsby-plugin-typescript",
     "gatsby-plugin-mdx",
