@@ -7,6 +7,13 @@ tags: [Docker]
 It's quite helpful to be able to quickly fire up an application configured specifically for your environment using a single command.
 Utilizing multi-stage build and build targets we can accomplish this with Docker.
 
+## Multi-Stage Builds
+
+[Multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) allows you to compose a final image of multiple preliminary images in a single Dockerfile.
+By providing an `AS` keyword with a stage name allows you to reference that image in a subsequent build stage.
+For our purposes, we'll install all of our dependencies in an `install` stage and then `COPY --from=install` so that we have our dependencies in our final image.
+As we'll see later we can reference a stage as a build target in `docker-compose.yml`.
+
 ## Dockerfiles
 
 ```Dockerfile
@@ -54,6 +61,7 @@ services:
 ## Set up development environment
 
 docker-compose automatically reads from both `docker-compose.yml` and `docker-compose.override.yml` which makes the override file perfect for configuring your development environment.
+Here we'll set a build target in the backend to create an image with our dependencies and then execute a development command.
 
 ```yml
 version: "3.8"
@@ -75,4 +83,4 @@ services:
   frontend:
 ```
 
-Now running `docker-compose up --build -d` will run the application in development mode with hot reloading.
+Now running `docker-compose up --build` will run the application in development mode with hot reloading.
