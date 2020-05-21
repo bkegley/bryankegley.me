@@ -1,26 +1,27 @@
 module.exports = {
   siteMetadata: {
-    title: 'Bryan Kegley',
+    title: "Bryan Kegley",
     author: {
-      name: 'Bryan Kegley',
-      description: 'Bryan writes things and codes things'
+      name: "Bryan Kegley",
+      description: "Bryan writes things and codes things",
     },
-    sitUrl: 'https://bryankegley.me',
+    sitUrl: "https://bryankegley.me",
     social: {
-      twitter: 'bkegley',
-      github: 'bkegley',
-      twitch: 'bjkegley',
-    }
+      twitter: "bkegley",
+      github: "bkegley",
+      twitch: "bjkegley",
+    },
   },
   plugins: [
     "gatsby-plugin-typescript",
     "gatsby-plugin-mdx",
+    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: 'posts',
-        path: `${__dirname}/posts`
-      }
+        name: "posts",
+        path: `${__dirname}/posts`,
+      },
     },
     {
       resolve: "gatsby-plugin-postcss",
