@@ -1,0 +1,18 @@
+---
+title: Run NPM Scripts with PM2 
+summary: Run scripts from your package.json with pm2 
+tags: [Misc]
+---
+
+I've had to search for this answer so many times I thought I'd put it up here instead.
+
+```sh
+pm2 start npm --name 'My Process' -- run scriptName
+```
+
+I run a lot of things in yarn workspaces so I find myself using it frequently like this:
+
+```sh
+pm2 start yarn --name 'My Other Process' -- workspace @bjk/package run scriptName
+```
+
