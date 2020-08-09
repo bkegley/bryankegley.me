@@ -1,6 +1,7 @@
 import React from "react";
 import { Logo } from "./Logo";
 import { Link } from "gatsby";
+import { Search } from "./Search";
 
 export const Header = () => {
   return (
@@ -8,6 +9,7 @@ export const Header = () => {
       <Link to="/">
         <Logo />
       </Link>
+      <Search />
       <nav className="flex items-center text-lg">
         <Link className="mr-6" to="/posts">
           posts
