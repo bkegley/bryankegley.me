@@ -1,4 +1,5 @@
 import React from "react";
+import { useStaticQuery, graphql, navigate } from "gatsby";
 import mousetrap from "mousetrap";
 import {
   useCombobox,
@@ -7,17 +8,51 @@ import {
 } from "downshift";
 
 interface IItem {
-  name: string;
+  title: string;
+  type: string;
+  tags: string[];
+  summary: string;
+  searchString: string;
   value: string;
 }
 
-const items: IItem[] = [
-  { name: "hey", value: "hey" },
-  { name: "there", value: "there" },
-  { name: "folks", value: "folks" }
-];
-
 export const Search = () => {
+  const data = useStaticQuery(graphql`
+    query SearchBarQuery {
+      allMdx {
+        nodes {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            type
+            tags
+            summary
+          }
+        }
+      }
+    }
+  `);
+
+  const items: IItem[] = data.allMdx.nodes.map(({ fields, frontmatter }) => {
+    return {
+      ...frontmatter,
+      value: fields.slug,
+      searchString: `${frontmatter.title} ${frontmatter.tags.join(" ")} ${
+        frontmatter.summary
+      }`.toLowerCase()
+    };
+  });
+
+  return <SearchInput items={items} />;
+};
+
+interface SearchInputProps {
+  items: IItem[];
+}
+
+const SearchInput = ({ items }: SearchInputProps) => {
   const [inputItems, setInputItems] = React.useState<IItem[]>(items);
   const [shouldUpdateSearchText, setShouldUpdateSearchText] = React.useState(
     false
@@ -66,7 +101,16 @@ export const Search = () => {
     items: inputItems,
     stateReducer,
     onInputValueChange: ({ inputValue }) => {
-      setInputItems(items.filter(item => item.value.includes(inputValue)));
+      setInputItems(
+        items.filter(item =>
+          item.searchString.includes(inputValue.toLowerCase())
+        )
+      );
+    },
+    onSelectedItemChange: ({ selectedItem }) => {
+      if (selectedItem) {
+        navigate(selectedItem.value);
+      }
     }
   });
 
@@ -106,7 +150,7 @@ export const Search = () => {
                     key={`${item}${index}`}
                     {...getItemProps({ item, index })}
                   >
-                    {item.value}
+                    {item.title}
                   </li>
                 );
               })
