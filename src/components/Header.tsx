@@ -5,7 +5,7 @@ import { Search } from "./Search";
 
 export const Header = () => {
   return (
-    <header className="flex items-center justify-between py-4 md:py-8">
+    <header className="relative flex items-center justify-end py-4 md:py-8">
       <Link to="/">
         <Logo />
       </Link>

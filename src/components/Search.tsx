@@ -6,6 +6,7 @@ import {
   UseComboboxState,
   UseComboboxStateChangeOptions
 } from "downshift";
+import { Badge } from "./Badge";
 
 interface IItem {
   title: string;
@@ -77,6 +78,14 @@ const SearchInput = ({ items }: SearchInputProps) => {
           }
           return changes;
         }
+        case useCombobox.stateChangeTypes.ItemClick:
+        case useCombobox.stateChangeTypes.InputKeyDownEnter: {
+          setShouldUpdateSearchText(false);
+          return {
+            ...changes,
+            inputValue: ""
+          };
+        }
         case useCombobox.stateChangeTypes.InputBlur: {
           setShouldUpdateSearchText(false);
         }
@@ -127,38 +136,66 @@ const SearchInput = ({ items }: SearchInputProps) => {
 
   return (
     <div>
-      <div className="absolute top-0 left-0 z-50 w-full mt-10 text-center">
-        <label className="sr-only" {...getLabelProps()}>
-          Search
+      <div className="absolute top-0 left-0 z-50 w-1/2 py-4 md:py-8">
+        <label className="" {...getLabelProps()}>
+          <div
+            {...getComboboxProps()}
+            className={`${
+              isOpen ? "w-full" : "w-1/2"
+            } transition-all duration-150 flex items-center justify-between w-1/4 px-2 py-2 bg-white rounded`}
+          >
+            <input
+              className="w-full p-0 text-gray-900 border-0 outline-none appearance-none transition-all duration-300 ease-in-out"
+              type="text"
+              placeholder="Search"
+              {...getInputProps({ ref })}
+            />
+            <span className="inline-flex flex-col items-center justify-center px-2 py-1 text-gray-600 border border-gray-600 rounded">
+              s
+            </span>
+          </div>
+          <div
+            className="w-5/6 mx-auto mt-6 text-gray-900 bg-white rounded shadow"
+            {...getMenuProps()}
+          >
+            {isOpen ? (
+              <ul className="overflow-hidden">
+                {inputItems.map((item, index) => {
+                  return (
+                    <li
+                      className={`my-2 grid grid-cols-5 ${
+                        highlightedIndex === index ? "bg-gray-300" : ""
+                      }`}
+                      key={`${item}${index}`}
+                      {...getItemProps({ item, index })}
+                    >
+                      <div className="py-2 mx-5 border-r-2 border-gray-600 col-span-2">
+                        {item.title}
+                      </div>
+                      <div className="py-2 ml-5 text-gray-500 col-span-3">
+                        <div>{item.summary}</div>
+                        <div>
+                          <div className="flex items-center mt-4 space-x-2">
+                            {item.tags.map(tag => {
+                              return (
+                                <span className="px-1 py-px text-sm tracking-wide text-gray-900 uppercase rounded bg-secondary shadow-sm">
+                                  {tag}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : null}
+          </div>
         </label>
-        <div {...getComboboxProps()}>
-          <input
-            className="mx-auto bg-white"
-            type="text"
-            placeholder="Type 's' to search"
-            {...getInputProps({ ref })}
-          />
-        </div>
-        <ul {...getMenuProps()}>
-          {isOpen
-            ? inputItems.map((item, index) => {
-                return (
-                  <li
-                    className={`${
-                      highlightedIndex === index ? "bg-red-100" : ""
-                    }`}
-                    key={`${item}${index}`}
-                    {...getItemProps({ item, index })}
-                  >
-                    {item.title}
-                  </li>
-                );
-              })
-            : null}
-        </ul>
       </div>
       {isOpen ? (
-        <div className="fixed inset-0 z-40 w-full h-full bg-gray-900 opacity-50" />
+        <div className="fixed inset-0 z-40 bg-gray-900 opacity-50" />
       ) : null}
     </div>
   );
