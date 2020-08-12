@@ -1,0 +1,39 @@
+---
+title: Mapping Object Keys in TypeScript 
+summary: Object.keys(obj).map struggles with type inference. Here's how to fix it. 
+tags: [TypeScript]
+---
+
+Often you want to iterate over the keys of an object and perform a function on either the keys or their values (or both). TypeScript isn't able to infer the type of the `key` without a little help.
+Let's take the example of taking in a user input of a dog and saving that dog to a database.
+
+## The Problem
+
+```ts
+const doggoInput = {
+  name: 'Pedro',
+  breed: 'mutt',
+  onDoorbell() {
+    alert('woof woof!')
+  }
+}
+
+const doggo = new Dog()
+
+Object.keys(doggoInput).forEach(key => {
+  // TypeScript can't infer that key is a key of doggo
+ doggo[key] = doggoInput[key] 
+})
+```
+
+## The Solution
+
+```ts
+(Object.keys(doggoInput) as unknown as keyof typeof doggoInput).forEach(key => {
+  // TypeScript knows key is type 'name' | 'breed' | 'onDoorbell'
+  doggo[key] = doggoInput[key]
+})
+
+```
+
+And viola! We've fixed our TypeScript problem without ts-ignore!
