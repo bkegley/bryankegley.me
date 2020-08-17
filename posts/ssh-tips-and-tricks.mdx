@@ -1,0 +1,37 @@
+---
+title: ssh Tips and Tricks
+summary: Got ssh problems? Don't we all?
+tags: [DevOps]
+---
+
+I don't utilize ssh very much in my day-to-day environment which means I forget a lot of the basic commands. Thought I'd drop some tips and tricks in here to help myself (and maybe you) remember.
+
+This is just a quick and dirty knowledge-dump that should be updated over time.
+
+## Execute a command over ssh
+
+Don't bother ssh'ing in just to execute a command. Do it remotely over ssh!
+
+```sh
+ssh user@remote_host command
+```
+
+Need sudo for that? We got you covered!
+
+```sh
+ssh -t user@remote_host command
+```
+
+## Setting up a git remote at non standard ssh port
+
+Sometimes you want to be super secure and open up a fancy port like 1337 for ssh. Here's how to set a git remote to it:
+
+```sh
+git remote add fancy-remote ssh://user@remote_host:port
+```
+
+I've had to set up [dokku](http://dokku.viewdocs.io/dokku/) for non-standard ports which was a bit tricky. Instead of `dokku@remote_host:app-name` use:
+
+```sh
+git remote add dokku ssh://dokku@remote_host:port/app-name
+```
