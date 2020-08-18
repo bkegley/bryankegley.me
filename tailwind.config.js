@@ -2,7 +2,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#ee4266",
+        primary: "#F92672",
         secondary: "#AE81FF",
         gray: {
           100: "#F8FAFD",
@@ -13,15 +13,15 @@ module.exports = {
           600: "#495162",
           700: "#404754",
           800: "#292A44",
-          900: "#212136",
-        },
+          900: "#212136"
+        }
       },
       fontSize: {
         "7xl": "5rem",
-        "8xl": "6rem",
-      },
-    },
+        "8xl": "6rem"
+      }
+    }
   },
   variants: {},
-  plugins: [],
+  plugins: []
 };

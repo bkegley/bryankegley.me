@@ -68,15 +68,30 @@ const SearchInput = ({ items }: SearchInputProps) => {
     ) => {
       const { type, changes } = actionAndChanges;
       switch (type) {
+        case useCombobox.stateChangeTypes.FunctionToggleMenu: {
+          if (!state.highlightedIndex) {
+            return {
+              ...changes,
+              highlightedIndex: 0
+            };
+          }
+          return changes;
+        }
         case useCombobox.stateChangeTypes.InputChange: {
           if (!shouldUpdateSearchText) {
             setShouldUpdateSearchText(true);
             return {
               ...changes,
-              inputValue: state.inputValue
+              inputValue: state.inputValue,
+              highlightedIndex:
+                state.highlightedIndex < 0 ? 0 : changes.highlightedIndex
             };
           }
-          return changes;
+          return {
+            ...changes,
+            highlightedIndex:
+              state.highlightedIndex < 0 ? 0 : changes.highlightedIndex
+          };
         }
         case useCombobox.stateChangeTypes.ItemClick:
         case useCombobox.stateChangeTypes.InputKeyDownEnter: {
@@ -88,6 +103,10 @@ const SearchInput = ({ items }: SearchInputProps) => {
         }
         case useCombobox.stateChangeTypes.InputBlur: {
           setShouldUpdateSearchText(false);
+          return {
+            ...changes,
+            inputValue: ""
+          };
         }
         default: {
           return changes;
@@ -136,18 +155,19 @@ const SearchInput = ({ items }: SearchInputProps) => {
 
   return (
     <div>
-      <div className="absolute top-0 left-0 z-50 w-1/2 py-4 md:py-8">
-        <label className="" {...getLabelProps()}>
+      <div className="absolute top-0 left-0 z-50 w-full py-4 md:w-1/2 md:py-8">
+        <label {...getLabelProps()}>
           <div
             {...getComboboxProps()}
             className={`${
-              isOpen ? "w-full" : "w-1/2"
-            } transition-all duration-150 flex items-center justify-between w-1/4 px-2 py-2 bg-white rounded`}
+              isOpen ? "w-full" : "w-1/4 md:w-3/5"
+            } transition-all duration-150 flex items-center justify-between w-1/4 px-6 py-2 bg-gray-900 rounded`}
           >
             <input
-              className="w-full p-0 text-gray-900 border-0 outline-none appearance-none transition-all duration-300 ease-in-out"
+              className="w-full p-0 text-gray-400 placeholder-transparent bg-transparent border-0 outline-none appearance-none md:placeholder-current transition-all duration-300 ease-in-out"
               type="text"
-              placeholder="Search"
+              placeholder="Type s to search..."
+              onFocus={() => toggleMenu()}
               {...getInputProps({ ref })}
             />
             <span className="inline-flex flex-col items-center justify-center px-2 py-1 text-gray-600 border border-gray-600 rounded">
@@ -155,35 +175,33 @@ const SearchInput = ({ items }: SearchInputProps) => {
             </span>
           </div>
           <div
-            className="w-5/6 mx-auto mt-6 text-gray-900 bg-white rounded shadow"
+            className="w-5/6 mx-auto mt-6 overflow-hidden text-gray-400 bg-gray-900 rounded shadow-xl"
             {...getMenuProps()}
           >
             {isOpen ? (
-              <ul className="overflow-hidden">
-                {inputItems.map((item, index) => {
+              <ul className="overflow-hidden space-y-4">
+                {inputItems.slice(0, 5).map((item, index) => {
                   return (
                     <li
-                      className={`my-2 grid grid-cols-5 ${
-                        highlightedIndex === index ? "bg-gray-300" : ""
+                      className={`p-2 md:p-4 border-l-4 md:border-r-4 md:border-l-0 ${
+                        highlightedIndex === index
+                          ? "border-secondary"
+                          : "border-transparent"
                       }`}
                       key={`${item}${index}`}
                       {...getItemProps({ item, index })}
                     >
-                      <div className="py-2 mx-5 border-r-2 border-gray-600 col-span-2">
-                        {item.title}
-                      </div>
-                      <div className="py-2 ml-5 text-gray-500 col-span-3">
-                        <div>{item.summary}</div>
-                        <div>
-                          <div className="flex items-center mt-4 space-x-2">
-                            {item.tags.map(tag => {
-                              return (
-                                <span className="px-1 py-px text-sm tracking-wide text-gray-900 uppercase rounded bg-secondary shadow-sm">
-                                  {tag}
-                                </span>
-                              );
-                            })}
-                          </div>
+                      <div className="py-2 mx-5 text-2xl">{item.title}</div>
+                      <div className="hidden py-2 ml-5 text-gray-500 md:block">
+                        <p>{item.summary}</p>
+                        <div className="flex items-center mt-4 space-x-2">
+                          {item.tags.map(tag => {
+                            return (
+                              <Badge type="secondary" size="sm">
+                                {tag}
+                              </Badge>
+                            );
+                          })}
                         </div>
                       </div>
                     </li>
@@ -195,7 +213,7 @@ const SearchInput = ({ items }: SearchInputProps) => {
         </label>
       </div>
       {isOpen ? (
-        <div className="fixed inset-0 z-40 bg-gray-900 opacity-50" />
+        <div className="fixed inset-0 z-40 bg-gray-900 opacity-25" />
       ) : null}
     </div>
   );
