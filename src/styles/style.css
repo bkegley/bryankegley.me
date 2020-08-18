@@ -15,7 +15,7 @@ body {
 }
 
 .footer {
-  @apply bottom-0 left-0 bg-gray-800 w-full;
+  @apply bottom-0 left-0 w-full bg-gray-800;
 }
 
 .font-heading {
@@ -24,6 +24,30 @@ body {
 
 .font-body {
   font-family: Lato;
+}
+
+.badge {
+  @apply text-sm tracking-wide uppercase rounded font-heading
+}
+
+.badge-sm {
+  @apply px-1 py-px
+}
+
+.badge-md {
+  @apply px-2 py-1 
+}
+
+.badge-lg {
+  @apply px-3 py-2
+}
+
+.badge-primary {
+  @apply text-gray-300 bg-primary 
+}
+
+.badge-secondary {
+  @apply text-gray-900 bg-secondary
 }
 
 /* purgecss end ignore */

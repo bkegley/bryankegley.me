@@ -1,10 +1,12 @@
 import React from "react";
 import { Logo } from "./Logo";
 import { Link } from "gatsby";
+import { Search } from "./Search";
 
 export const Header = () => {
   return (
-    <header className="flex items-center justify-between py-4 md:py-8">
+    <header className="relative flex items-center justify-end py-4 space-x-4 md:py-8">
+      <Search />
       <Link to="/">
         <Logo />
       </Link>
