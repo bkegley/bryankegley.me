@@ -3,15 +3,13 @@ import { Link } from "gatsby";
 
 interface PostListProps {
   posts: Array<{
-    node: {
-      id: string;
-      frontmatter: {
-        title: string;
-        tags: string[];
-      };
-      fields: {
-        slug: string;
-      };
+    id: string;
+    frontmatter: {
+      title: string;
+      tags: string[];
+    };
+    fields: {
+      slug: string;
     };
   }>;
 }
@@ -19,14 +17,14 @@ interface PostListProps {
 export const PostList = ({ posts }: PostListProps) => {
   return (
     <ul>
-      {posts.map(({ node }) => {
+      {posts.map(post => {
         return (
           <li>
             <Link
-              to={node.fields.slug}
+              to={post.fields.slug}
               className="hover:text-primary hover:underline"
             >
-              {node.frontmatter.title}
+              {post.frontmatter.title}
             </Link>
           </li>
         );

@@ -13,13 +13,21 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: "slug",
       node,
-      value: `/${sourceName}${value}`,
+      value: `/${sourceName}${value}`
+    });
+
+    createNodeField({
+      name: "searchString",
+      node,
+      value: `${node.frontmatter.title} ${node.frontmatter.tags.join(" ")} ${
+        node.frontmatter.summary
+      }`.toLowerCase()
     });
 
     createNodeField({
       name: "sourceName",
       node,
-      value: sourceName,
+      value: sourceName
     });
   }
 };
@@ -48,7 +56,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   createPage({
     path: "/posts",
-    component: path.resolve(`${__dirname}/src/templates/Posts.tsx`),
+    component: path.resolve(`${__dirname}/src/templates/Posts.tsx`)
   });
 
   result.data.allMdx.edges.forEach(({ node }) => {
@@ -56,8 +64,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       path: node.fields.slug,
       component: path.resolve(`${__dirname}/src/templates/Post.tsx`),
       context: {
-        id: node.id,
-      },
+        id: node.id
+      }
     });
   });
 };
@@ -67,7 +75,7 @@ exports.onPreBootstrap = ({ store }) => {
 
   const dirs = [path.join(program.directory, "posts")];
 
-  dirs.forEach((dir) => {
+  dirs.forEach(dir => {
     if (!fs.existsSync(dir)) {
       mkdirp.sync(dir);
     }
@@ -97,4 +105,13 @@ exports.createSchemaCustomization = ({ actions }) => {
     `;
 
   createTypes(typeDefs);
+};
+
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions;
+
+  if (page.path.match(/^\/search/)) {
+    page.matchPath = `/search/*`;
+    createPage(page);
+  }
 };
