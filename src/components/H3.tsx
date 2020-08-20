@@ -5,7 +5,5 @@ export interface H3Props {
 }
 
 export const H3 = ({ children }: H3Props) => {
-  return (
-    <h3 className="text-secondary text-3xl my-4 font-heading">{children}</h3>
-  );
+  return <h3 className="my-4 text-3xl font-heading">{children}</h3>;
 };

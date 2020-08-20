@@ -14,6 +14,7 @@ interface Mdx {
     id: string;
     frontmatter: {
       title: string;
+      summary: string;
       tags: string[];
     };
     fields: {

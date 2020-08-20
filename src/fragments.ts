@@ -5,6 +5,7 @@ export const PostListFragment = graphql`
     id
     frontmatter {
       title
+      summary
       tags
       type
     }
@@ -19,6 +20,7 @@ export const SearchPostFragment = graphql`
     id
     frontmatter {
       title
+      summary
       tags
       type
     }
