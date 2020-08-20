@@ -59,6 +59,8 @@ const SearchInput = ({ items }: SearchInputProps) => {
     false
   );
 
+  const inputItemList = inputItems.slice(0, 5);
+
   const ref = React.useRef(null);
 
   const stateReducer = React.useCallback(
@@ -126,7 +128,7 @@ const SearchInput = ({ items }: SearchInputProps) => {
     getMenuProps,
     getComboboxProps
   } = useCombobox({
-    items: inputItems,
+    items: inputItemList,
     stateReducer,
     onInputValueChange: ({ inputValue }) => {
       setInputItems(
@@ -180,7 +182,7 @@ const SearchInput = ({ items }: SearchInputProps) => {
           >
             {isOpen ? (
               <ul className="overflow-hidden space-y-4">
-                {inputItems.slice(0, 5).map((item, index) => {
+                {inputItemList.map((item, index) => {
                   return (
                     <li
                       className={`p-2 md:p-4 border-l-4 md:border-r-4 md:border-l-0 ${
