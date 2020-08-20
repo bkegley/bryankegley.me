@@ -6,16 +6,14 @@ import { SEO } from "../components/SEO";
 interface PostListProps {
   data: {
     allMdx: {
-      edges: Array<{
-        node: {
-          id: string;
-          frontmatter: {
-            title: string;
-            tags: string[];
-          };
-          fields: {
-            slug: string;
-          };
+      nodes: Array<{
+        id: string;
+        frontmatter: {
+          title: string;
+          tags: string[];
+        };
+        fields: {
+          slug: string;
         };
       }>;
     };
@@ -27,7 +25,7 @@ const PostList = ({ data }: PostListProps) => {
     <Layout>
       <SEO title="Posts" description="Summary of posts" />
       <H1>posts</H1>
-      <PostListComponent posts={data.allMdx.edges} />
+      <PostListComponent posts={data.allMdx.nodes} />
     </Layout>
   );
 };
@@ -41,10 +39,8 @@ export const query = graphql`
       pageInfo {
         hasNextPage
       }
-      edges {
-        node {
-          ...PostListFragment
-        }
+      nodes {
+        ...PostListFragment
       }
     }
   }

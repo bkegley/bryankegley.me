@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
 import { H1, H2, Layout, PostList } from "../components";
-import { Helmet } from "react-helmet";
 import { SEO } from "../components/SEO";
 
 interface IndexPageProps {
@@ -11,16 +10,14 @@ interface IndexPageProps {
 }
 
 interface Mdx {
-  edges: Array<{
-    node: {
-      id: string;
-      frontmatter: {
-        title: string;
-        tags: string[];
-      };
-      fields: {
-        slug: string;
-      };
+  nodes: Array<{
+    id: string;
+    frontmatter: {
+      title: string;
+      tags: string[];
+    };
+    fields: {
+      slug: string;
     };
   }>;
 }
@@ -43,7 +40,7 @@ const IndexPage = ({ data }: IndexPageProps) => {
       <div className="my-4">
         <H2>Recent Posts</H2>
         <div className="mb-6">
-          <PostList posts={data.allPosts.edges} />
+          <PostList posts={data.allPosts.nodes} />
         </div>
         <Link to="/posts" className="hover:text-primary hover:underline">
           View all
@@ -60,10 +57,8 @@ export const query = graphql`
       limit: 5
       filter: { fields: { sourceName: { eq: "posts" } } }
     ) {
-      edges {
-        node {
-          ...PostListFragment
-        }
+      nodes {
+        ...PostListFragment
       }
     }
   }

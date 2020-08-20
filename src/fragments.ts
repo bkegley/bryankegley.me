@@ -14,6 +14,21 @@ export const PostListFragment = graphql`
   }
 `;
 
+export const SearchPostFragment = graphql`
+  fragment SearchPostFragment on Mdx {
+    id
+    frontmatter {
+      title
+      tags
+      type
+    }
+    fields {
+      slug
+      searchString
+    }
+  }
+`;
+
 export const PostDetailFragment = graphql`
   fragment PostDetailFragment on Mdx {
     id
