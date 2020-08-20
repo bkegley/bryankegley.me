@@ -1,0 +1,26 @@
+---
+title: Using fzf to Search Bash History 
+summary: With a couple more characters you can improve your bash history search over ctrl+r 
+tags: [Command Line]
+---
+
+Been mashing bash commands in a mad dash to thrash that crash-inducing bug? We've all been there and then in the aftermath of such a session how do we find that one command that fixed everything?
+
+`ctrl+r` provides a pretty nice experience when searching through your bash history but I wanted to give an alternative.
+
+## Use fzf
+
+I was first introduced to `fzf` as a vim fuzzy file finder but learned later that it's uses expand far beyond just vim usage.`fzf` is a fantastic little tool for searching. `fzf` is even more fantastic when you start piping everything to it.
+
+Here's the command:
+
+```sh
+cat ~/.bash_history | fzf | sh
+```
+
+We `cat` everything to `fzf` which allows us to fuzzy find the command we're looking for and pipe that to `sh` to execute.
+
+Easy.
+
+Peasy.
+
