@@ -7,12 +7,15 @@ import { CodeBlock, H1, H2, Quotation } from "./src/components";
 import "./src/styles/style.css";
 
 const components = {
-  p: (props) => <p className="my-6" {...props} />,
-  pre: (props) => <div className='text-sm' {...props} />,
+  p: props => <p className="my-6" {...props} />,
+  pre: props => <div className="text-sm" {...props} />,
   code: CodeBlock,
+  inlineCode: props => (
+    <span className="px-2 py-1 text-sm text-white bg-gray-900" {...props} />
+  ),
   h1: H1,
   h2: H2,
-  Quotation,
+  Quotation
 };
 
 export const wrapRootElement = ({ element }) => {
