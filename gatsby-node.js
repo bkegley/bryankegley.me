@@ -41,6 +41,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         edges {
           node {
             id
+            frontmatter {
+              tags
+            }
             fields {
               slug
             }
@@ -57,6 +60,25 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   createPage({
     path: "/posts",
     component: path.resolve(`${__dirname}/src/templates/Posts.tsx`)
+  });
+
+  const tags = result.data.allMdx.edges.reduce((acc, { node }) => {
+    return acc.concat(
+      node.frontmatter.tags.filter(tag => {
+        return !acc.includes(tag);
+      })
+    );
+  }, []);
+
+  tags.forEach(tag => {
+    const slug = `/tags/${tag.replace(" ", "-").toLowerCase()}`;
+    createPage({
+      path: slug,
+      component: path.resolve(`${__dirname}/src/templates/Tag.tsx`),
+      context: {
+        tag
+      }
+    });
   });
 
   result.data.allMdx.edges.forEach(({ node }) => {

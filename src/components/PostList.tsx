@@ -36,12 +36,13 @@ export const PostList = ({ posts }: PostListProps) => {
               <div className="px-4 col-span-1">
                 <div className="flex flex-wrap items-center">
                   {post.frontmatter.tags.map(tag => {
+                    const slug = `/tags/${tag.replace(" ", "-").toLowerCase()}`;
                     return (
-                      <span className="mb-px mr-1">
+                      <Link to={slug} className="mb-px mr-1">
                         <Badge type="secondary" size="sm">
                           {tag}
                         </Badge>
-                      </span>
+                      </Link>
                     );
                   })}
                 </div>
