@@ -1,5 +1,6 @@
 import React from "react";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
+import { theme } from "../utils/theme";
 
 export interface CodeBlockProps {
   language?: Language;
@@ -8,10 +9,15 @@ export interface CodeBlockProps {
 
 export const CodeBlock = ({
   children,
-  language = "typescript",
+  language = "typescript"
 }: CodeBlockProps) => {
   return (
-    <Highlight {...defaultProps} code={children.trim()} language={language}>
+    <Highlight
+      {...defaultProps}
+      code={children.trim()}
+      language={language}
+      theme={theme}
+    >
       {({ className, style, tokens, getLineProps, getTokenProps }) => {
         return (
           <pre
@@ -20,7 +26,7 @@ export const CodeBlock = ({
               ...style,
               padding: "20px",
               overflow: "auto",
-              minWidth: "100%",
+              minWidth: "100%"
             }}
           >
             {tokens.map((line, i) => {
