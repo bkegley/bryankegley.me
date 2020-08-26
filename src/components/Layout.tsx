@@ -11,10 +11,10 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <SEO />
-      <div className="bg-gray-800 text-gray-300 text-lg lg:text-xl px-6 lg:px-0 relative">
-        <div className="wrapper container mx-auto min-h-screen">
+      <div className="relative px-6 text-lg text-gray-300 bg-gray-800 lg:text-xl lg:px-0">
+        <div className="container min-h-screen mx-auto wrapper">
           <Header />
-          <main className="content mx-4 lg:mx-auto mb-32">{children}</main>
+          <main className="mx-4 mb-32 content lg:mx-auto">{children}</main>
         </div>
         <Footer />
       </div>
