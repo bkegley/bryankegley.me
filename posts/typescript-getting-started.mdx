@@ -1,0 +1,56 @@
+---
+title: TypeScript- Getting Started
+summary: Starting with TypeScript can be daunting at first. Here's a minimal guide to getting started.
+tags: [TypeScript]
+---
+
+The beauty of TypeScript is that it's quite easy to incrementally adopt it in an existing project. The thought of having to migrate a large codebase prevents a lot of people from getting started with TypeScript.
+However, with a proper `tsconfig.json` you can get rolling without the need for any large changes.
+
+## tsconfig.json
+
+TypeScript compiles to JavaScript meaning a tool called a compiler (`tsc` in this case) takes code as input and produces different code (js in this case). If you're familiar with the JS ecosystem it can be helpful
+compare the TS compiler to babel. The settings for how compilation happens reside in your `tsconfig.json` which is stored in the root of your project (in almost all cases).
+
+To generate a basic config run `npx tsconfig.json` (generates an opinionated config based on type of project) or `npx -p typescript tsc --init`.
+
+Under `compilerOptions` make sure you have the following settings set:
+
+```json
+"compilerOptions": {
+  "noImplicitAny": false,
+  "allowJs": true,
+  "strict": false
+}
+```
+
+## package.json
+
+You'll need to add TypeScript to your project as a dev dependency with `yarn add -D typescript` or `npm i --save-dev typescript`. If you want hot-reloading you'll want nodemon (`yarn add -D nodemon`) as well.
+
+Typically, the compiler will include everything in your `src` directory and output it to `dist` (can be changed in `tsconfig.json`). That means you'll run the compiler and then execute code from your `dist` directory.
+Add the following scripts to your `package.json`:
+
+```json
+"scripts": {
+  "tsc": "tsc",
+  "start": "node dist/index.js",
+  "prestart": "yarn tsc",
+  "develop": "nodemon --watch src/ -e ts --exec \"npm run start\""
+}
+```
+
+Running `yarn start` will first run the TypeScript compiler and then execute `dist/index.js`. The `develop` script tells nodemon to watch file changes in the `src` directory with a `ts` extension and
+execute the `start` command anytime it detects changes (which in compiles and executes `dist/index.js`).
+
+## Write TypeScript!
+
+Instead of running through all the TypeScript [docs](https://www.typescriptlang.org/docs/handbook/intro.html) (which are phenomenal by the way), I think it's better to just start adding small pieces of TS to your project and learn as you go.
+I suggest you start with adding basic types to your project to get used to the syntax and slowly add more advanced types to your toolbelt as you get more comfortable. Here's a couple basic examples to get you rolling:
+
+```ts
+const currentlyLearning: string = 'how to use TypeScript'
+const isEasy: boolean = true
+const daysBeforeITryIt: number = 0
+```
+
