@@ -26,7 +26,8 @@ export const CodeBlock = ({
               ...style,
               padding: "20px",
               overflow: "auto",
-              minWidth: "100%"
+              minWidth: "100%",
+              margin: "2rem auto"
             }}
           >
             {tokens.map((line, i) => {
