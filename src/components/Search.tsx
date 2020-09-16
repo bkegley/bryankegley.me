@@ -4,7 +4,7 @@ import mousetrap from "mousetrap";
 import {
   useCombobox,
   UseComboboxState,
-  UseComboboxStateChangeOptions
+  UseComboboxStateChangeOptions,
 } from "downshift";
 import { Badge } from "./Badge";
 
@@ -42,7 +42,7 @@ export const Search = () => {
       value: fields.slug,
       searchString: `${frontmatter.title} ${frontmatter.tags.join(" ")} ${
         frontmatter.summary
-      }`.toLowerCase()
+      }`.toLowerCase(),
     };
   });
 
@@ -74,7 +74,7 @@ const SearchInput = ({ items }: SearchInputProps) => {
           if (!state.highlightedIndex) {
             return {
               ...changes,
-              highlightedIndex: 0
+              highlightedIndex: 0,
             };
           }
           return changes;
@@ -86,13 +86,16 @@ const SearchInput = ({ items }: SearchInputProps) => {
               ...changes,
               inputValue: state.inputValue,
               highlightedIndex:
-                state.highlightedIndex < 0 ? 0 : changes.highlightedIndex
+                state.highlightedIndex < 0 ? 0 : changes.highlightedIndex,
             };
           }
           return {
             ...changes,
             highlightedIndex:
-              state.highlightedIndex < 0 ? 0 : changes.highlightedIndex
+              state.highlightedIndex &&
+              state.highlightedIndex <= inputItemList.length
+                ? state.highlightedIndex
+                : 0,
           };
         }
         case useCombobox.stateChangeTypes.ItemClick:
@@ -100,14 +103,15 @@ const SearchInput = ({ items }: SearchInputProps) => {
           setShouldUpdateSearchText(false);
           return {
             ...changes,
-            inputValue: ""
+            inputValue: "",
           };
         }
         case useCombobox.stateChangeTypes.InputBlur: {
           setShouldUpdateSearchText(false);
+          ref.current.blur();
           return {
             ...changes,
-            inputValue: ""
+            inputValue: "",
           };
         }
         default: {
@@ -115,7 +119,7 @@ const SearchInput = ({ items }: SearchInputProps) => {
         }
       }
     },
-    [shouldUpdateSearchText]
+    [shouldUpdateSearchText, inputItemList]
   );
 
   const {
@@ -126,13 +130,13 @@ const SearchInput = ({ items }: SearchInputProps) => {
     highlightedIndex,
     isOpen,
     getMenuProps,
-    getComboboxProps
+    getComboboxProps,
   } = useCombobox({
     items: inputItemList,
     stateReducer,
     onInputValueChange: ({ inputValue }) => {
       setInputItems(
-        items.filter(item =>
+        items.filter((item) =>
           item.searchString.includes(inputValue.toLowerCase())
         )
       );
@@ -141,7 +145,7 @@ const SearchInput = ({ items }: SearchInputProps) => {
       if (selectedItem) {
         navigate(selectedItem.value);
       }
-    }
+    },
   });
 
   React.useEffect(() => {
@@ -197,7 +201,7 @@ const SearchInput = ({ items }: SearchInputProps) => {
                       <div className="hidden py-2 ml-5 text-gray-500 md:block">
                         <p>{item.summary}</p>
                         <div className="flex items-center mt-4 space-x-2">
-                          {item.tags.map(tag => {
+                          {item.tags.map((tag) => {
                             return (
                               <Badge type="secondary" size="sm">
                                 {tag}
