@@ -1,0 +1,34 @@
+---
+title: Assigning TypeScript Constructor Params
+summary: I learned today that I've been wasting valuable moments of my life
+tags: [TypeScript]
+---
+
+Have you ever been annoyed at having to type `this.prop = prop` over and over for every constructor param in your TypeScript classes?
+You're in luck! I just learned today there's a much easier way.
+
+The following two classes are both valid:
+
+```ts
+class Message {
+  public text: string;
+  private username: string;
+
+  constructor(text: string, username: string) {
+    this.text = text;
+    this.username = username;
+  }
+
+  get message() {
+    return this.username + ":" + this.text;
+  }
+}
+
+class OtherMessage {
+  constructor(public text: string, private username: string) {}
+
+  get message() {
+    return this.username + ":" + this.text;
+  }
+}
+```
