@@ -4,6 +4,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Badge, H1, Label, Layout } from "../components";
 import { SEO } from "../components/SEO";
 import { Link } from "gatsby";
+import { CTA } from "../components/CTA";
 
 export interface PostTemplateProps {
   data: {
@@ -26,7 +27,7 @@ export interface PostTemplateProps {
 const PostTemplate = ({ data }) => {
   const {
     frontmatter: { summary, title },
-    body
+    body,
   } = data.mdx;
   return (
     <Layout>
@@ -38,7 +39,7 @@ const PostTemplate = ({ data }) => {
             <Label>Tags</Label>
           </div>
           <div className="flex flex-wrap items-center">
-            {data.mdx.frontmatter.tags.map(tag => {
+            {data.mdx.frontmatter.tags.map((tag) => {
               const slug = `/tags/${tag.replace(" ", "-").toLowerCase()}`;
               return (
                 <Link to={slug} className="mb-px mr-1">
@@ -56,6 +57,9 @@ const PostTemplate = ({ data }) => {
       </div>
       <div className="lg:mx-24">
         <MDXRenderer>{body}</MDXRenderer>
+      </div>
+      <div className="mt-20">
+        <CTA />
       </div>
     </Layout>
   );
