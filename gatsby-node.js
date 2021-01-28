@@ -13,7 +13,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: "slug",
       node,
-      value: `/${sourceName}${value}`
+      value: `/${sourceName}${value}`,
     });
 
     createNodeField({
@@ -21,13 +21,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value: `${node.frontmatter.title} ${node.frontmatter.tags.join(" ")} ${
         node.frontmatter.summary
-      }`.toLowerCase()
+      }`.toLowerCase(),
     });
 
     createNodeField({
       name: "sourceName",
       node,
-      value: sourceName
+      value: sourceName,
     });
   }
 };
@@ -59,25 +59,25 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   createPage({
     path: "/posts",
-    component: path.resolve(`${__dirname}/src/templates/Posts.tsx`)
+    component: path.resolve(`${__dirname}/src/templates/Posts.tsx`),
   });
 
   const tags = result.data.allMdx.edges.reduce((acc, { node }) => {
     return acc.concat(
-      node.frontmatter.tags.filter(tag => {
+      node.frontmatter.tags.filter((tag) => {
         return !acc.includes(tag);
       })
     );
   }, []);
 
-  tags.forEach(tag => {
+  tags.forEach((tag) => {
     const slug = `/tags/${tag.replace(" ", "-").toLowerCase()}`;
     createPage({
       path: slug,
       component: path.resolve(`${__dirname}/src/templates/Tag.tsx`),
       context: {
-        tag
-      }
+        tag,
+      },
     });
   });
 
@@ -86,8 +86,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       path: node.fields.slug,
       component: path.resolve(`${__dirname}/src/templates/Post.tsx`),
       context: {
-        id: node.id
-      }
+        id: node.id,
+      },
     });
   });
 };
@@ -97,7 +97,7 @@ exports.onPreBootstrap = ({ store }) => {
 
   const dirs = [path.join(program.directory, "posts")];
 
-  dirs.forEach(dir => {
+  dirs.forEach((dir) => {
     if (!fs.existsSync(dir)) {
       mkdirp.sync(dir);
     }

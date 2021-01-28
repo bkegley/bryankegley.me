@@ -3,14 +3,14 @@ module.exports = {
     title: "Bryan Kegley",
     author: {
       name: "Bryan Kegley",
-      description: "Bryan writes things and codes things"
+      description: "Bryan writes things and codes things",
     },
     sitUrl: "https://bryankegley.me",
     social: {
       twitter: "bkegley",
       github: "bkegley",
-      twitch: "bjkegley"
-    }
+      twitch: "bjkegley",
+    },
   },
   plugins: [
     "gatsby-plugin-typescript",
@@ -20,30 +20,37 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "posts",
-        path: `${__dirname}/posts`
-      }
+        path: `${__dirname}/posts`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "glossary",
+        path: `${__dirname}/glossary`,
+      },
     },
     {
       resolve: "gatsby-plugin-postcss",
       options: {
         postCssPlugins: [
           require("tailwindcss")("./tailwind.config.js"),
-          require("autoprefixer")
-        ]
-      }
+          require("autoprefixer"),
+        ],
+      },
     },
     {
       resolve: "gatsby-plugin-purgecss",
       options: {
         tailwind: true,
-        purgeOnly: ["src/styles/style.css"]
-      }
+        purgeOnly: ["src/styles/style.css"],
+      },
     },
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: "UA-142995105-1"
-      }
-    }
-  ]
+        trackingId: "UA-142995105-1",
+      },
+    },
+  ],
 };
