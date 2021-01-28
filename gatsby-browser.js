@@ -1,6 +1,6 @@
 import React from "react";
-import "typeface-aileron";
-import "typeface-lato";
+import "@fontsource/aileron";
+import "@fontsource/lato";
 import { MDXProvider } from "@mdx-js/react";
 import { CodeBlock, H1, H2, Quotation } from "./src/components";
 

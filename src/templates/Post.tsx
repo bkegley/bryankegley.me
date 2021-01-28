@@ -24,7 +24,7 @@ export interface PostTemplateProps {
   };
 }
 
-const PostTemplate = ({ data }) => {
+const PostTemplate = ({ data }: PostTemplateProps) => {
   const {
     frontmatter: { summary, title },
     body,
@@ -39,10 +39,10 @@ const PostTemplate = ({ data }) => {
             <Label>Tags</Label>
           </div>
           <div className="flex flex-wrap items-center">
-            {data.mdx.frontmatter.tags.map((tag) => {
+            {data.mdx.frontmatter.tags?.map((tag: string) => {
               const slug = `/tags/${tag.replace(" ", "-").toLowerCase()}`;
               return (
-                <Link to={slug} className="mb-px mr-1">
+                <Link to={slug} className="mb-px mr-1" key={tag}>
                   <Badge type="secondary" size="sm">
                     {tag}
                   </Badge>

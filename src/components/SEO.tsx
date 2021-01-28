@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
@@ -31,8 +31,8 @@ export const SEO = ({ title, description }: SEOProps) => {
   `);
   const {
     title: siteTitle,
-    author: { name, description: siteDescription },
-    social: { twitter, github, twitch },
+    author: { description: siteDescription },
+    social: { twitter },
   } = siteMetadata;
   return (
     <Helmet

@@ -6,7 +6,7 @@ export const Footer = () => {
   return (
     <div className="footer">
       <div className="container flex flex-col justify-center px-6 mx-auto wrapper lg:px-0">
-        <div className="py-10 mx-auto" py-10>
+        <div className="py-10 mx-auto">
           <Logo />
         </div>
         <div className="flex items-center pb-10 mx-auto text-sm">

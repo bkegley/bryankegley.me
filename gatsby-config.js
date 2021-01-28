@@ -13,7 +13,6 @@ module.exports = {
     },
   },
   plugins: [
-    "gatsby-plugin-typescript",
     "gatsby-plugin-mdx",
     "gatsby-plugin-react-helmet",
     {
@@ -23,13 +22,13 @@ module.exports = {
         path: `${__dirname}/posts`,
       },
     },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "glossary",
-        path: `${__dirname}/glossary`,
-      },
-    },
+    //{
+    //resolve: "gatsby-source-filesystem",
+    //options: {
+    //name: "glossary",
+    //path: `${__dirname}/glossary`,
+    //},
+    //},
     {
       resolve: "gatsby-plugin-postcss",
       options: {

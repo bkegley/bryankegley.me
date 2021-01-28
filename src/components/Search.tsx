@@ -1,6 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql, navigate } from "gatsby";
-import mousetrap from "mousetrap";
+import Mousetrap from "mousetrap";
 import {
   useCombobox,
   UseComboboxState,
@@ -17,8 +17,24 @@ interface IItem {
   value: string;
 }
 
+interface IQueryData {
+  allMdx: {
+    nodes: Array<{
+      fields: {
+        slug: string;
+      };
+      frontmatter: {
+        title: string;
+        type: string;
+        tags?: string[];
+        summary: string;
+      };
+    }>;
+  };
+}
+
 export const Search = () => {
-  const data = useStaticQuery(graphql`
+  const data: IQueryData = useStaticQuery(graphql`
     query SearchBarQuery {
       allMdx {
         nodes {
@@ -39,8 +55,9 @@ export const Search = () => {
   const items: IItem[] = data.allMdx.nodes.map(({ fields, frontmatter }) => {
     return {
       ...frontmatter,
+      tags: frontmatter.tags ?? [],
       value: fields.slug,
-      searchString: `${frontmatter.title} ${frontmatter.tags.join(" ")} ${
+      searchString: `${frontmatter.title} ${frontmatter.tags?.join(" ")} ${
         frontmatter.summary
       }`.toLowerCase(),
     };
@@ -108,6 +125,7 @@ const SearchInput = ({ items }: SearchInputProps) => {
         }
         case useCombobox.stateChangeTypes.InputBlur: {
           setShouldUpdateSearchText(false);
+          // @ts-ignore
           ref.current.blur();
           return {
             ...changes,
@@ -137,7 +155,7 @@ const SearchInput = ({ items }: SearchInputProps) => {
     onInputValueChange: ({ inputValue }) => {
       setInputItems(
         items.filter((item) =>
-          item.searchString.includes(inputValue.toLowerCase())
+          item.searchString.includes(inputValue?.toLowerCase() ?? "")
         )
       );
     },
@@ -149,14 +167,17 @@ const SearchInput = ({ items }: SearchInputProps) => {
   });
 
   React.useEffect(() => {
-    mousetrap.bind("s", () => {
+    Mousetrap.bind("s", () => {
       if (!isOpen) {
         toggleMenu();
+        // @ts-ignore
         ref.current.focus();
       }
     });
 
-    return () => Mousetrap.unbind("s");
+    return () => {
+      Mousetrap.unbind("s");
+    };
   }, []);
 
   return (
