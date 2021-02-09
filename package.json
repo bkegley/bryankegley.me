@@ -34,6 +34,7 @@
     "typeface-lato": "^1.1.13"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.4.0",
     "@types/mousetrap": "^1.6.3",
     "@types/react-helmet": "^6.1.0",
     "autoprefixer": "^10.2.3",

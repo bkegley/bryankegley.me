@@ -55,7 +55,7 @@ const PostTemplate = ({ data }: PostTemplateProps) => {
           <div className="text-xl lg:text-2xl">{summary}</div>
         </div>
       </div>
-      <div className="lg:mx-24">
+      <div className="prose sm:prose-sm lg:prose-lg xl:prose-xl">
         <MDXRenderer>{body}</MDXRenderer>
       </div>
       <div className="mt-20">

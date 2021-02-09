@@ -9,7 +9,7 @@ export interface CodeBlockProps {
 
 export const CodeBlock = ({
   children,
-  language = "typescript"
+  language = "typescript",
 }: CodeBlockProps) => {
   return (
     <Highlight
@@ -27,7 +27,7 @@ export const CodeBlock = ({
               padding: "20px",
               overflow: "auto",
               minWidth: "100%",
-              margin: "2rem auto"
+              margin: "2rem auto",
             }}
           >
             {tokens.map((line, i) => {
