@@ -181,7 +181,7 @@ packer.init({
 })
 
 --- startup and add configure plugins
-return packer.startup(function()
+packer.startup(function()
   local use = use
   -- add you plugins here like:
   -- use 'neovim/nvim-lspconfig'
@@ -207,7 +207,7 @@ We'll add tree-sitter, some fallback highlighting support, and a theme to our
 plugins.
 
 ```lua
-return packer.startup(function()
+packer.startup(function()
   local use = use
 
   use 'nvim-treesitter/nvim-treesitter'
@@ -224,7 +224,13 @@ return packer.startup(function()
 )
 ```
 
-And then configure tree-sitter with:
+To set the default theme use:
+
+```lua
+vim.g.colors_name = 'gloombuddy'
+```
+
+And finally configure tree-sitter with:
 
 ```lua
 local configs = require'nvim-treesitter.configs'
@@ -238,7 +244,7 @@ configs.setup {
 ```
 
 Then to install the parser for a specific language use `:TSInstall {language}`
-(languages aer tab-completed for ease) and `:TSInstallInfo` to see what parsers
+(languages are tab-completed for ease) and `:TSInstallInfo` to see what parsers
 you have installed.
 
 ## LSP
@@ -268,7 +274,6 @@ local completion = require'completion'
 local function custom_on_attach(client)
   print('Attaching to ' .. client.name)
   completion.on_attach(client)
-  lsp_status.on_attach(client)
 
   setup_diagnostics()
 end
