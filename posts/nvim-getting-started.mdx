@@ -274,8 +274,6 @@ local completion = require'completion'
 local function custom_on_attach(client)
   print('Attaching to ' .. client.name)
   completion.on_attach(client)
-
-  setup_diagnostics()
 end
 
 local default_config = {
@@ -288,23 +286,18 @@ lspconfig.tsserver.setup(default_config)
 
 You'll notice that out of the box diagnostic errors can be a little obtrusive.
 This is where the flexibility of built-in lsp really shines. Each method handler
-can be customized. We'll customize the `textDocument/publishDiagnostics` method
-below and add it to our `custom_on_attach` function.
+can be customized. We'll customize the `textDocument/publishDiagnostics`
+handler.
 
 ```lua
-local function setup_diagnostics()
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      underline = true,
-      virtual_text = false,
-      signs = true,
-      update_in_insert = true,
-    }
-  )
-end
-
-
--- add setup_diagnostics() to our custom_on_attach
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+  }
+)
 ```
 
 Now that our errors aren't dominating our editor let's set up some mappings to
